@@ -10,6 +10,7 @@ import BlogContent from "../components/blog-content.component";
 import CommentsContainer, {
   fetchComments,
 } from "../components/comments.component";
+import Image from "../components/lazy-image-component";
 
 const blogStructure = {
   title: "",
@@ -104,7 +105,13 @@ const BlogPage = () => {
           }}>
           <CommentsContainer />
           <div className="max-w-[900px] center py-10 max-lg:px-[5vw]">
-            <img src={banner} className="aspect-video" alt="" />
+            <Image
+              src={banner}
+              className="aspect-video h-[600px] w-full"
+              type="blog-details"
+              alt=""
+            />
+            {/* <img src={banner} className="aspect-video" alt="" /> */}
             <div className="mt-12">
               <h2>{title}</h2>
               <div className="flex max-sm:flex-col justify-between my-8">

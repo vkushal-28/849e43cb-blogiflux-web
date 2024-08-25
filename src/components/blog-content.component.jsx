@@ -36,8 +36,7 @@ const List = ({ style, items }) => {
           <li
             key={i}
             className="my-4"
-            dangerouslySetInnerHTML={{ __html: item }}
-          ></li>
+            dangerouslySetInnerHTML={{ __html: item }}></li>
         );
       })}
     </ol>
@@ -54,15 +53,13 @@ const BlogContent = ({ block }) => {
       return (
         <h3
           dangerouslySetInnerHTML={{ __html: data.text }}
-          className="text-3xl font-bold"
-        ></h3>
+          className="text-3xl font-bold"></h3>
       );
     }
     return (
       <h2
         dangerouslySetInnerHTML={{ __html: data.text }}
-        className="text-4xl font-bold"
-      ></h2>
+        className="text-4xl font-bold"></h2>
     );
   }
 
