@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://vkushal-28.github.io/849e43cb-blogiflux-web/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
