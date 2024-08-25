@@ -7,12 +7,12 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
-  authDomain: "mern-blog-71910.firebaseapp.com",
-  projectId: "mern-blog-71910",
-  storageBucket: "mern-blog-71910.appspot.com",
-  messagingSenderId: "323738753441",
-  appId: "1:323738753441:web:a3bf9eeee0635688f7d3e0",
+  apiKey: `${import.meta.env.VITE_API_KEY}`,
+  authDomain: "blogiflux.firebaseapp.com",
+  projectId: "blogiflux",
+  storageBucket: "blogiflux.appspot.com",
+  messagingSenderId: "1055241523633",
+  appId: "1:1055241523633:web:6adbf7e7aacd3f0b08ed90",
 };
 
 // Initialize Firebase
@@ -20,7 +20,10 @@ const app = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 
+console.log(provider);
 const auth = getAuth();
+
+console.log(getAuth());
 
 export const authWithGoogle = async () => {
   let user = null;
