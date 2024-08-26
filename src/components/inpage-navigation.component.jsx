@@ -26,11 +26,17 @@ const InPageNavigation = ({
   };
 
   useEffect(() => {
+    const pathname = window.location.pathname;
+
     if (width > 766 && inPageNavIndex !== defaultActiveIndex) {
       changePageState(activeTabRef.current, defaultActiveIndex);
     }
 
-    if (!isResizeEventAdded) {
+    if (pathname !== "/" && inPageNavIndex == defaultActiveIndex) {
+      changePageState(activeTabRef.current, defaultActiveIndex);
+    }
+
+    if (pathname == "/" && !isResizeEventAdded) {
       window.addEventListener("resize", () => {
         if (!isResizeEventAdded) {
           setIsResizeEventAdded(true);

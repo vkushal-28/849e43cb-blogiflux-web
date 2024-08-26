@@ -1,6 +1,7 @@
 import React from "react";
 import { getDay } from "../common/date";
 import { Link } from "react-router-dom";
+import Image from "./lazy-image-component";
 
 const BlogPostCard = ({ content, author }) => {
   const {
@@ -15,9 +16,7 @@ const BlogPostCard = ({ content, author }) => {
   const { fullname, profile_img, username } = author;
 
   return (
-    <Link
-      to={`/blog/${id}`}
-      className="flex gap-8 items-center border-b border-grey pb-5 mb-4">
+    <div className="flex gap-8 items-center border-b border-grey pb-5 mb-4">
       <div className="w-full">
         <Link to={`/user/${username}`}>
           <div className="flex gap-2 items-center mb-7">
@@ -28,7 +27,9 @@ const BlogPostCard = ({ content, author }) => {
             <p className="min-w-fit">{getDay(publishedAt)}</p>
           </div>
         </Link>
-        <h1 className="blog-title">{title}</h1>
+        <Link to={`/blog/${id}`}>
+          <h1 className="blog-title text-black">{title}</h1>
+        </Link>
         <p className="my-3 text-xl font-gelasio leading-7 max-sm:hidden md:max-[1100px]:hidden line-clamp-2">
           {description}
         </p>
@@ -41,13 +42,15 @@ const BlogPostCard = ({ content, author }) => {
           </span>
         </div>
       </div>
-      <div className="h-28 aspect-square bg-grey">
-        <img
+      <div className="h-28 aspect-square ">
+        <Image
           src={banner}
           className="w-full h-full aspect-square rounded-lg  object-cover"
+          type="blog-list"
+          alt=""
         />
       </div>
-    </Link>
+    </div>
   );
 };
 

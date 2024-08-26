@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import Skeleton from "react-loading-skeleton";
+import React, { useContext, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { ThemeContext } from "../App";
 
 const Image = ({ src, alt, type, className }) => {
   const [loaded, setLoaded] = useState(false);
+
+  const { theme } = useContext(ThemeContext);
 
   const handleImageLoad = () => {
     setLoaded(true);
@@ -12,12 +15,19 @@ const Image = ({ src, alt, type, className }) => {
   return (
     <>
       {!loaded && (
-        <Skeleton className={className} count={1} /> // Five-line loading skeleton
+        <SkeletonTheme
+          baseColor={`${theme == "dark" ? "#2A2A2A" : "#F3F3F3"}`}
+          highlightColor={`${theme == "dark" ? "#303030" : "#e6e6e6"}`}>
+          <Skeleton className={`${className}`} count={1} />
+        </SkeletonTheme>
+        // <div className="w-full animate-pulse">
+        //   <div className={`${className} bg-gray-300 `}></div>
+        // </div>
       )}
       <img
         src={src}
         alt={alt}
-        className={`object-cover overflow-hidden transition-opacity duration-500 ease-in-out  ${className} ${
+        className={` overflow-hidden transition-opacity duration-500 ease-in-out  ${className} ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
         onLoad={handleImageLoad}

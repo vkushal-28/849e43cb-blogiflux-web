@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getDay } from "../common/date";
 import { UserContext } from "../App";
 import axios from "axios";
+import Image from "./lazy-image-component";
 
 const BlogStats = ({ stats }) => {
   return (
@@ -44,10 +45,11 @@ export const ManageBlogCard = ({ blog }) => {
       <div
         className="flex gap-10 border-b mb-6 max-md:px-4 border-grey pb-6 items-center"
         keu={index}>
-        <img
+        <Image
           src={banner}
-          alt=""
           className="max-md:hidden lg:hidden xl:block w-28 h-28 flex-none bg-grey object-cover rounded-md"
+          type="blog-list"
+          alt=""
         />
 
         <div className="flex flex-col justify-between py-2 w-full min-w-[300px] ">
@@ -95,7 +97,7 @@ export const ManageBlogCard = ({ blog }) => {
 };
 
 export const ManageDraftCard = ({ blog }) => {
-  let { banner, blog_id, description, title, publishedAt, index } = blog;
+  let { blog_id, description, title, publishedAt, index } = blog;
 
   let {
     userAuth: { access_token },

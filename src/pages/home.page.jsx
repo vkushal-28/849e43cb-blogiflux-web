@@ -10,6 +10,7 @@ import MinimalBlogPostCard from "../components/nobanner-blog-post.component";
 import NoDataMessage from "../components/nodata.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";
 import LoadMoreData from "../components/load-more.component";
+import { BlogListLoader } from "../components/loaders/blog-loader.component";
 
 const HomePage = () => {
   const [blogs, setBlogs] = useState(null);
@@ -113,7 +114,7 @@ const HomePage = () => {
             defaultHidden={["trending blogs"]}>
             <>
               {blogs == null ? (
-                <Loader />
+                <BlogListLoader />
               ) : blogs.result.length ? (
                 blogs.result.map((blog, i) => {
                   return (

@@ -99,7 +99,7 @@ const ManageBlogs = () => {
       </div>
       <InPageNavigation
         routes={["Published Blogs", "draft"]}
-        // defaultHidden={[]}
+        defaultHidden={[""]}
         defaultActiveIndex={activeTab !== "draft" ? 0 : 1}>
         {blogs === null ? (
           <Loader />

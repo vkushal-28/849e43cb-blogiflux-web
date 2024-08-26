@@ -107,11 +107,11 @@ const BlogPage = () => {
           <div className="max-w-[900px] center py-10 max-lg:px-[5vw]">
             <Image
               src={banner}
-              className="aspect-video h-[600px] w-full"
+              className="aspect-video rounded-md max-md:h-full md:h-[600px] w-full"
               type="blog-details"
               alt=""
             />
-            {/* <img src={banner} className="aspect-video" alt="" /> */}
+
             <div className="mt-12">
               <h2>{title}</h2>
               <div className="flex max-sm:flex-col justify-between my-8">
