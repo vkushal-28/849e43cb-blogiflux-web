@@ -10,7 +10,10 @@ import MinimalBlogPostCard from "../components/nobanner-blog-post.component";
 import NoDataMessage from "../components/nodata.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";
 import LoadMoreData from "../components/load-more.component";
-import { BlogListLoader } from "../components/loaders/blog-loader.component";
+import {
+  BlogListLoader,
+  MinimalBlogListLoader,
+} from "../components/loaders/blog-loader.component";
 
 const HomePage = () => {
   const [blogs, setBlogs] = useState(null);
@@ -141,7 +144,7 @@ const HomePage = () => {
 
             <>
               {trendingBlogs == null ? (
-                <Loader />
+                <MinimalBlogListLoader />
               ) : trendingBlogs.length ? (
                 trendingBlogs.map((blog, i) => {
                   return (
@@ -185,7 +188,7 @@ const HomePage = () => {
               Trending <i className="fi fi-rr-arrow-trend-up"></i>
             </h1>
             {trendingBlogs == null ? (
-              <Loader />
+              <MinimalBlogListLoader />
             ) : trendingBlogs.length ? (
               trendingBlogs.map((blog, i) => {
                 return (

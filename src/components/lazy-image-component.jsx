@@ -16,13 +16,10 @@ const Image = ({ src, alt, type, className }) => {
     <>
       {!loaded && (
         <SkeletonTheme
-          baseColor={`${theme == "dark" ? "#2A2A2A" : "#F3F3F3"}`}
-          highlightColor={`${theme == "dark" ? "#303030" : "#e6e6e6"}`}>
+          baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
+          highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
           <Skeleton className={`${className}`} count={1} />
         </SkeletonTheme>
-        // <div className="w-full animate-pulse">
-        //   <div className={`${className} bg-gray-300 `}></div>
-        // </div>
       )}
       <img
         src={src}

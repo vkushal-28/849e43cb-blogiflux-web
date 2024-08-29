@@ -6,6 +6,7 @@ import Loader from "../components/loader.component";
 import AnimationWrapper from "../common/page-animation";
 import NotificationCard from "../components/notification-card.component";
 import LoadMoreData from "../components/load-more.component";
+import { NotificationLoader } from "../components/loaders/dashboard-loader.component";
 
 const Notifications = () => {
   let {
@@ -55,7 +56,7 @@ const Notifications = () => {
   };
 
   useEffect(() => {
-    if (access_token) fetchNotifications({ page: 1 });
+    // if (access_token) fetchNotifications({ page: 1 });
   }, [access_token, filter]);
 
   const handleFilter = (e) => {
@@ -83,7 +84,7 @@ const Notifications = () => {
         })}
       </div>
       {notifications === null ? (
-        <Loader />
+        <NotificationLoader type={filter} />
       ) : (
         <>
           {notifications.result.length > 0
