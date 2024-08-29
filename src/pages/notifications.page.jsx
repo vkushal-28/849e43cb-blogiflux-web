@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { filterPaginationdata } from "../common/filter-pagination-data";
-import Loader from "../components/loader.component";
 import AnimationWrapper from "../common/page-animation";
 import NotificationCard from "../components/notification-card.component";
 import LoadMoreData from "../components/load-more.component";
@@ -14,6 +13,7 @@ const Notifications = () => {
     userAuth: { access_token, new_notification_available },
     setUserAuth,
   } = useContext(UserContext);
+
   const [filter, setFilter] = useState("all");
   const [notifications, setNotifications] = useState(null);
 
@@ -56,7 +56,7 @@ const Notifications = () => {
   };
 
   useEffect(() => {
-    // if (access_token) fetchNotifications({ page: 1 });
+    if (access_token) fetchNotifications({ page: 1 });
   }, [access_token, filter]);
 
   const handleFilter = (e) => {

@@ -31,7 +31,7 @@ const BlogEditor = () => {
   } = useContext(UserContext);
   const { theme } = useContext(ThemeContext);
 
-  // useEffect
+
   useEffect(() => {
     if (!textEditor.isReady) {
       setTextEditor(
@@ -108,7 +108,7 @@ const BlogEditor = () => {
         .catch((err) => {
           console.log(err);
         });
-      // }
+
     }
   };
 
