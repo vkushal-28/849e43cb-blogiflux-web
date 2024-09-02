@@ -124,11 +124,16 @@ const PublishForm = () => {
     <AnimationWrapper>
       <section className="w-screen min-h-screen grid items-center lg:grid-cols-2 lg:gap-4">
         <Toaster />
-        <button
+        <Button
           className="w-12 h-12 absolute right-[5vw] z-10 top-[5%] lg:top-[10%]"
           onClick={handleClose}>
           <i className="fi fi-br-cross"></i>
-        </button>
+        </Button>
+        {/* <button
+          className="w-12 h-12 absolute right-[5vw] z-10 top-[5%] lg:top-[10%]"
+          onClick={handleClose}>
+          <i className="fi fi-br-cross"></i>
+        </button> */}
 
         <div className="max-w-[550px] center">
           <p className="text-dark-grey mb-1">Preview</p>
@@ -186,9 +191,12 @@ const PublishForm = () => {
           <p className="mt-1 mb-4 text-dark-grey text-right">
             {tagLimit - tags.length} Tags left
           </p>
-          <button className="btn-dark px-8" onClick={onPublishBlog}>
+          <Button className="btn-dark px-8" onClick={(e) => onPublishBlog(e)}>
             Publish
-          </button>
+          </Button>
+          {/* <button className="btn-dark px-8" onClick={onPublishBlog}>
+            Publish
+          </button> */}
         </div>
       </section>
     </AnimationWrapper>

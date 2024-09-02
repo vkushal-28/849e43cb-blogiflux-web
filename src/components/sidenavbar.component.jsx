@@ -41,12 +41,19 @@ const SideNav = () => {
       <section className="relative flex gap-10 py-0 m-0 max-md:flex-col">
         <div className="sticky top-[80px] z-30">
           <div className="md:hidden bg-white py-1 border-b border-grey flex flex-nowrap overflow-x-auto">
-            <button
+            {/* <Button
               ref={sidebarIconTab}
               className="p-5 capitalize"
               onClick={changePageState}>
               <i className="fi fi-rr-bars-staggered pointer-events-none"></i>
+            </Button> */}
+            <button
+              ref={sidebarIconTab}
+              className="p-5 capitalize"
+              onClick={(e) => changePageState(e)}>
+              <i className="fi fi-rr-bars-staggered pointer-events-none"></i>
             </button>
+
             <button
               ref={pageStateTab}
               className="p-5 capitalize"

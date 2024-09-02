@@ -8,6 +8,7 @@ import axios from "axios";
 import { storeInSession } from "../common/session";
 import { UserContext } from "../App";
 import { authWithGoogle } from "../common/firebase";
+import Button from "../common/button.component";
 
 const UserAuthForm = ({ type }) => {
   const {
@@ -15,8 +16,8 @@ const UserAuthForm = ({ type }) => {
     setUserAuth,
   } = useContext(UserContext);
 
-  const useAuthThroughServer = (serverRoute, formData) => {
-    axios
+  const useAuthThroughServer = async (serverRoute, formData) => {
+    await axios
       .post(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, formData)
       .then(({ data }) => {
         storeInSession("user", JSON.stringify(data));
@@ -28,9 +29,7 @@ const UserAuthForm = ({ type }) => {
       });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     // form data
     const serverRoute = type === "sign-in" ? "/signin" : "/signup";
 
@@ -63,21 +62,21 @@ const UserAuthForm = ({ type }) => {
       );
     }
 
-    useAuthThroughServer(serverRoute, fd);
+    await useAuthThroughServer(serverRoute, fd);
   };
 
-  const handleGoogleAuth = (e) => {
+  const handleGoogleAuth = async (e) => {
     e.preventDefault();
 
-    authWithGoogle()
-      .then((user) => {
+    await authWithGoogle()
+      .then(async (user) => {
         const serverRoute = "/google-auth";
 
         const formData = {
           access_token: user.accessToken,
         };
 
-        useAuthThroughServer(serverRoute, formData);
+        await useAuthThroughServer(serverRoute, formData);
       })
       .catch((err) => {
         toast.error("trouble login with google");
@@ -121,13 +120,16 @@ const UserAuthForm = ({ type }) => {
             icon="fi-rr-key"
           />
 
-          <button
+          <Button className="btn-dark center mt-14 " onClick={handleSubmit}>
+            {type.replace("-", " ")}
+          </Button>
+
+          {/* <button
             className="btn-dark center mt-14"
             type="submit"
-            onClick={handleSubmit}
-          >
+            onClick={handleSubmit}>
             {type.replace("-", " ")}
-          </button>
+          </button> */}
 
           <div className="relative w-full flex items-center gap-2 my-10 opacity-10 uppercase text-black font-bold">
             <hr className="w-1/2 border-black" />
@@ -135,10 +137,16 @@ const UserAuthForm = ({ type }) => {
             <hr className="w-1/2 border-black" />
           </div>
 
+          {/* <Button
+            className="btn-dark flex items-center justify-center gap-4 w-[90%] center"
+            onClick={handleGoogleAuth}>
+            <img src={googleIcon} alt="" className="w-5" />
+            Continue with google
+          </Button> */}
+
           <button
             className="btn-dark flex items-center justify-center gap-4 w-[90%] center"
-            onClick={handleGoogleAuth}
-          >
+            onClick={handleGoogleAuth}>
             <img src={googleIcon} alt="" className="w-5" />
             Continue with google
           </button>

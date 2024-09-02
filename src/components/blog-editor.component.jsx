@@ -12,6 +12,7 @@ import EditorJS from "@editorjs/editorjs";
 import { tools } from "./tools.component";
 import axios from "axios";
 import { ThemeContext, UserContext } from "../App";
+import Button from "../common/button.component";
 
 const BlogEditor = () => {
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ const BlogEditor = () => {
     userAuth: { access_token },
   } = useContext(UserContext);
   const { theme } = useContext(ThemeContext);
-
 
   useEffect(() => {
     if (!textEditor.isReady) {
@@ -108,22 +108,21 @@ const BlogEditor = () => {
         .catch((err) => {
           console.log(err);
         });
-
     }
   };
 
   const handleSaveDraft = (e) => {
-    if (e.target.className.includes("disable")) {
-      return;
-    }
+    // if (e.target.className.includes("disable")) {
+    //   return;
+    // }
 
     if (!title.length) {
       return toast.error("Write blog title before save it as a draft");
     }
 
-    let loadingToast = toast.loading("Saving Draft...");
+    let loadingToast = toast.loading("S aving Draft...");
 
-    e.target.classList.add("disable");
+    // e.target.classList.add("disable");
 
     if (textEditor.isReady) {
       textEditor.save().then((content) => {
@@ -147,7 +146,7 @@ const BlogEditor = () => {
             }
           )
           .then(() => {
-            e.target.classList.remove("disable");
+            // e.target.classList.remove("disable");
 
             toast.dismiss(loadingToast);
             toast.success("Saved 👍🏼");
@@ -157,7 +156,7 @@ const BlogEditor = () => {
             }, 500);
           })
           .catch(({ response }) => {
-            e.target.classList.remove("disable");
+            // e.target.classList.remove("disable");
             toast.dismiss(loadingToast);
             return toast.error(response.data.error);
           });
@@ -175,12 +174,22 @@ const BlogEditor = () => {
         </p>
 
         <div className="flex gap-4 ml-auto">
-          <button className="btn-dark py-2" onClick={hadlePublishEvent}>
+          <Button
+            className="btn-dark py-2"
+            onClick={(e) => hadlePublishEvent(e)}>
+            Publish
+          </Button>
+          <Button
+            className="btn-light py-2"
+            onClick={(e) => handleSaveDraft(e)}>
+            Save Draft
+          </Button>
+          {/* <button className="btn-dark py-2" onClick={hadlePublishEvent}>
             Publish
           </button>
           <button className="btn-light py-2" onClick={handleSaveDraft}>
             Save Draft
-          </button>
+          </button> */}
         </div>
       </nav>
       <Toaster />

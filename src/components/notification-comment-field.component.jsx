@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../App";
 import axios from "axios";
+import Button from "../common/button.component";
+import toast from "react-hot-toast";
 
 const NotificationCommentField = ({
   _id,
@@ -24,7 +26,7 @@ const NotificationCommentField = ({
     setNotifications,
   } = notificationData;
 
-  const handleComment = () => {
+  const handleComment = (e) => {
     if (!comment.length) {
       return toast.error("Write something to leave a comment...");
     }
@@ -60,9 +62,12 @@ const NotificationCommentField = ({
         placeholder="Leave a comment..."
         className="input-box pl-5 placeholder:text-dark-grey resize-none h-[150px] overflow-auto"
         onChange={(e) => setComment(e.target.value)}></textarea>
-      <button className="btn-dark mt-5 px-10" onClick={handleComment}>
+      <Button className="btn-dark mt-5 px-10" onClick={(e) => handleComment(e)}>
         Reply
-      </button>
+      </Button>
+      {/* <button className="btn-dark mt-5 px-10" onClick={handleComment}>
+        Reply
+      </button> */}
     </>
   );
 };

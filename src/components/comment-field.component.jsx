@@ -3,6 +3,7 @@ import { UserContext } from "../App";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { BlogContext } from "../pages/blog.page";
+import Button from "../common/button.component";
 
 const CommentField = ({
   action,
@@ -29,7 +30,7 @@ const CommentField = ({
 
   const [comment, setComment] = useState("");
 
-  const handleComment = () => {
+  const handleComment = (e) => {
     if (!access_token) {
       return toast.error("Please login first to leave a comment");
     }
@@ -103,9 +104,12 @@ const CommentField = ({
         placeholder="Leave a comment..."
         className="input-box pl-5 placeholder:text-dark-grey resize-none h-[150px] overflow-auto"
         onChange={(e) => setComment(e.target.value)}></textarea>
-      <button className="btn-dark mt-5 px-10" onClick={handleComment}>
+      <Button className="btn-dark mt-5 px-10" onClick={(e) => handleComment(e)}>
         {action}
-      </button>
+      </Button>
+      {/* <button className="btn-dark mt-5 px-10" onClick={handleComment}>
+        {action}
+      </button> */}
     </>
   );
 };

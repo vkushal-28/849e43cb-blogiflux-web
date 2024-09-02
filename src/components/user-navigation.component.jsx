@@ -3,6 +3,7 @@ import AnimationWrapper from "../common/page-animation";
 import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 import { removeFromSession } from "../common/session";
+import Button from "../common/button.component";
 
 const UserNavigation = () => {
   const {
@@ -40,12 +41,19 @@ const UserNavigation = () => {
 
         <span className="absolute border-t border-grey w-[100%]"></span>
 
-        <button
+        <Button
           className="text-left p-4 hover:bg-grey w-full pl-8 py-4"
           onClick={signOutUser}>
           <h1 className="font-bold text-xl mg-1">Sign Out</h1>
           <p className="text-dark-grey">@{username}</p>
-        </button>
+        </Button>
+
+        {/* <button
+          className="text-left p-4 hover:bg-grey w-full pl-8 py-4"
+          onClick={signOutUser}>
+          <h1 className="font-bold text-xl mg-1">Sign Out</h1>
+          <p className="text-dark-grey">@{username}</p>
+        </button> */}
       </div>
     </AnimationWrapper>
   );

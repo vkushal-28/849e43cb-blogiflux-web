@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import CommentField from "./comment-field.component";
 import { BlogContext } from "../pages/blog.page";
 import axios from "axios";
+import Button from "../common/button.component";
 
 const CommentCard = ({ index, leftVal, commentData }) => {
   let {
@@ -107,7 +108,7 @@ const CommentCard = ({ index, leftVal, commentData }) => {
     removeCommentCards(index + 1);
   };
 
-  const loadReplies = ({ skip = 0 }) => {
+  const loadReplies = (skip = 0) => {
     if (children.length) {
       axios
         .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-replies", {
@@ -134,7 +135,7 @@ const CommentCard = ({ index, leftVal, commentData }) => {
   };
 
   const handleDeleteComment = (e) => {
-    e.target.setAttribute("disabled", true);
+    // e.target.setAttribute("disabled", true);
 
     axios
       .post(
@@ -147,7 +148,7 @@ const CommentCard = ({ index, leftVal, commentData }) => {
         }
       )
       .then(() => {
-        e.target.removeAttribute("disabled");
+        // e.target.removeAttribute("disabled");
         removeCommentCards(index + 1, true);
       })
       .catch((err) => {
@@ -167,31 +168,49 @@ const CommentCard = ({ index, leftVal, commentData }) => {
         <p className="font-gelasio text-xl ml-3">{comment}</p>
         <div className="flex gap-5 items-center mt-5">
           {commentData.isReplyLoaded ? (
-            <button
-              type="button"
+            // <button
+            //   type="button"
+            //   className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
+            //   onClick={handleReplies}>
+            //   <i className="fi fi-rs-comment-dots" /> Hide Reply
+            // </button>
+            <Button
               className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
               onClick={handleReplies}>
               <i className="fi fi-rs-comment-dots" /> Hide Reply
-            </button>
+            </Button>
           ) : (
-            <button
-              type="button"
+            <Button
               className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
               onClick={loadReplies}>
               <i className="fi fi-rs-comment-dots" /> {children.length} Reply
-            </button>
+            </Button>
+            // <button
+            //   type="button"
+            //   className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
+            //   onClick={loadReplies}>
+            //   <i className="fi fi-rs-comment-dots" /> {children.length} Reply
+            // </button>
           )}
-          <button className="underline" onClick={handleReplyClick}>
+          <Button className="underline" onClick={handleReplyClick}>
             Reply
-          </button>
+          </Button>
+          {/* <button className="underline" onClick={handleReplyClick}>
+            Reply
+          </button> */}
 
           {username == commented_by_username || username == blog_author ? (
-            <button
+            <Button
               className="p-2 px-3 rounded-md border border-grey ml-auto hover:bg-red/10 hover:text-red flex items-center"
               onClick={handleDeleteComment}>
               <i className="fi fi-rr-trash" />
-            </button>
+            </Button>
           ) : (
+            // <button
+            //     className="p-2 px-3 rounded-md border border-grey ml-auto hover:bg-red/10 hover:text-red flex items-center"
+            //     onClick={handleDeleteComment}>
+            //     <i className="fi fi-rr-trash" />
+            //   </button>
             ""
           )}
         </div>

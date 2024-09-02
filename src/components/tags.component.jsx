@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { EditorContext } from "../pages/editor.pages";
+import Button from "../common/button.component";
 
 const Tag = ({ tag, tagIndex }) => {
   let {
@@ -40,11 +41,16 @@ const Tag = ({ tag, tagIndex }) => {
         onClick={addEditable}>
         {tag}
       </p>
-      <button
+      <Button
         className="mt-[2px] rounded-full absolute right-3 top-1/2 -translate-y-1/2"
         onClick={handleTagDelete}>
         <i className="fi fi-br-cross text-sm pointer-events-none"></i>
-      </button>
+      </Button>
+      {/* <button
+        className="mt-[2px] rounded-full absolute right-3 top-1/2 -translate-y-1/2"
+        onClick={handleTagDelete}>
+        <i className="fi fi-br-cross text-sm pointer-events-none"></i>
+      </button> */}
     </div>
   );
 };

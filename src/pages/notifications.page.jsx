@@ -1,11 +1,14 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { filterPaginationdata } from "../common/filter-pagination-data";
 import AnimationWrapper from "../common/page-animation";
 import NotificationCard from "../components/notification-card.component";
-import LoadMoreData from "../components/load-more.component";
+import LoadMoreData from "../common/load-more.component";
 import { NotificationLoader } from "../components/loaders/dashboard-loader.component";
+import apiRequest from "../common/api/apiRequest";
+import { getNotificationsApi } from "../common/api";
+import Loader from "../components/loader.component";
 
 const Notifications = () => {
   let {
@@ -19,40 +22,71 @@ const Notifications = () => {
 
   let filters = ["all", "like", "comment", "reply"];
 
-  const fetchNotifications = ({ page, deletedDocCount = 0 }) => {
-    axios
-      .post(
-        import.meta.env.VITE_SERVER_DOMAIN + "/notifications",
+  const fetchNotifications = async ({ page, deletedDocCount = 0 }) => {
+    try {
+      const {
+        data: { notifications: data },
+      } = await apiRequest(
+        "POST",
+        getNotificationsApi,
         {
           page,
           filter,
           deletedDocCount,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      )
-      .then(async ({ data: { notifications: data } }) => {
-        if (new_notification_available) {
-          setUserAuth({ ...userAuth, new_notification_available: false });
-        }
+        true
+      );
+      if (new_notification_available) {
+        setUserAuth({ ...userAuth, new_notification_available: false });
+      }
 
-        let formatedData = await filterPaginationdata({
-          state: notifications,
-          data,
-          page,
-          countRoute: "/all-notifications-count",
-          data_to_send: { filter },
-          user: access_token,
-        });
-
-        setNotifications(formatedData);
-      })
-      .catch((err) => {
-        console.log(err);
+      let formatedData = await filterPaginationdata({
+        state: notifications,
+        data,
+        page,
+        countRoute: "/all-notifications-count",
+        data_to_send: { filter },
+        user: access_token,
       });
+
+      setNotifications(formatedData);
+    } catch (error) {
+      console.error("Failed to fetch user data:", error.response);
+    }
+
+    // axios
+    //   .post(
+    //     import.meta.env.VITE_SERVER_DOMAIN + "/notifications",
+    //     {
+    //       page,
+    //       filter,
+    //       deletedDocCount,
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${access_token}`,
+    //       },
+    //     }
+    //   )
+    //   .then(async ({ data: { notifications: data } }) => {
+    //     if (new_notification_available) {
+    //       setUserAuth({ ...userAuth, new_notification_available: false });
+    //     }
+
+    //     let formatedData = await filterPaginationdata({
+    //       state: notifications,
+    //       data,
+    //       page,
+    //       countRoute: "/all-notifications-count",
+    //       data_to_send: { filter },
+    //       user: access_token,
+    //     });
+
+    //     setNotifications(formatedData);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   useEffect(() => {
@@ -84,8 +118,9 @@ const Notifications = () => {
         })}
       </div>
       {notifications === null ? (
-        <NotificationLoader type={filter} />
+        <Loader />
       ) : (
+        // <NotificationLoader type={filter} />
         <>
           {notifications.result.length > 0
             ? notifications.result.map((notification, i) => {

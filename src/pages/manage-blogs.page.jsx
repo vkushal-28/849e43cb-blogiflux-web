@@ -10,8 +10,10 @@ import {
   ManageDraftCard,
 } from "../components/manage-blogcard.component";
 import NoDataMessage from "../components/nodata.component";
-import LoadMoreData from "../components/load-more.component";
+import LoadMoreData from "../common/load-more.component";
 import { useSearchParams } from "react-router-dom";
+import { getUserWrittenBlogsApi } from "../common/api";
+import apiRequest from "../common/api/apiRequest";
 
 const ManageBlogs = () => {
   const [blogs, setBlogs] = useState(null);
@@ -23,34 +25,60 @@ const ManageBlogs = () => {
     userAuth: { access_token },
   } = useContext(UserContext);
 
-  const getBlogs = ({ page, draft, deletedDocCount = 0 }) => {
-    axios
-      .post(
-        import.meta.env.VITE_SERVER_DOMAIN + "/user-written-blogs",
+  const getBlogs = async ({ page, draft, deletedDocCount = 0 }) => {
+    try {
+      const { data } = await apiRequest(
+        "POST",
+        getUserWrittenBlogsApi,
         {
           page,
           draft,
           query,
           deletedDocCount,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`,
-          },
-        }
-      )
-      .then(async ({ data }) => {
-        let formatedData = await filterPaginationdata({
-          state: draft ? drafts : blogs,
-          data: data.blogs,
-          page,
-          user: access_token,
-          countRoute: "/user-written-blogs-count",
-          data_to_send: { draft, query },
-        });
-
-        draft ? setDrafts(formatedData) : setBlogs(formatedData);
+        true
+      );
+      let formatedData = await filterPaginationdata({
+        state: draft ? drafts : blogs,
+        data: data.blogs,
+        page,
+        user: access_token,
+        countRoute: "/user-written-blogs-count",
+        data_to_send: { draft, query },
       });
+
+      draft ? setDrafts(formatedData) : setBlogs(formatedData);
+    } catch (error) {
+      console.error("Failed to fetch user data:", error.response);
+    }
+
+    // axios
+    //   .post(
+    //     import.meta.env.VITE_SERVER_DOMAIN + "/user-written-blogs",
+    //     {
+    //       page,
+    //       draft,
+    //       query,
+    //       deletedDocCount,
+    //     },
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${access_token}`,
+    //       },
+    //     }
+    //   )
+    //   .then(async ({ data }) => {
+    //     let formatedData = await filterPaginationdata({
+    //       state: draft ? drafts : blogs,
+    //       data: data.blogs,
+    //       page,
+    //       user: access_token,
+    //       countRoute: "/user-written-blogs-count",
+    //       data_to_send: { draft, query },
+    //     });
+
+    //     draft ? setDrafts(formatedData) : setBlogs(formatedData);
+    //   });
   };
 
   useEffect(() => {

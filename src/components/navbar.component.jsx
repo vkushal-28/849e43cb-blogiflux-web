@@ -7,6 +7,7 @@ import { ThemeContext, UserContext } from "../App";
 import UserNavigation from "./user-navigation.component";
 import axios from "axios";
 import { storeInSession } from "../common/session";
+import Button from "../common/button.component";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -92,11 +93,17 @@ const Navbar = () => {
           <i className="fi fi-rr-search absolute right-[10%] md:pointer-events-none md:left-5 top-1/2 -translate-y-1/2 text-xl text-dark-grey" />
         </div>
         <div className="flex items-center gap-3 md:gap-6 ml-auto">
-          <button
+          <Button
             className="md:hidden bg-grey w-12 h-12 rounded-full flex items-center justify-center"
             onClick={() => setOpenSearchBox((currentVal) => !currentVal)}>
             <i className="fi fi-rr-search text-xl"></i>
-          </button>
+          </Button>
+
+          {/* <button
+            className="md:hidden bg-grey w-12 h-12 rounded-full flex items-center justify-center"
+            onClick={() => setOpenSearchBox((currentVal) => !currentVal)}>
+            <i className="fi fi-rr-search text-xl"></i>
+          </button> */}
 
           {/* {isAdmin && ( */}
           <Link to="/editor" className="hidden md:flex gap-2 link">
@@ -105,7 +112,7 @@ const Navbar = () => {
           </Link>
           {/* )} */}
 
-          <button
+          <Button
             className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10"
             onClick={changeTheme}>
             <i
@@ -113,30 +120,52 @@ const Navbar = () => {
                 theme == "light" ? "moon-stars" : "sun"
               } text-2xl block mt-1 `}
             />
-          </button>
+          </Button>
+          {/* <button
+            className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10"
+            onClick={changeTheme}>
+            <i
+              className={`fi fi-rr-${
+                theme == "light" ? "moon-stars" : "sun"
+              } text-2xl block mt-1 `}
+            />
+          </button> */}
 
           {access_token ? (
             <>
               <Link to="/dashboard/notifications">
-                <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
+                <Button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
                   <i className="fi fi-rr-bell text-xl block mt-1 " />
                   {new_notification_available && (
                     <span className="bg-red w-3 h-3 rounded-full absolute z-10 top-2 right-2"></span>
                   )}
-                </button>
+                </Button>
+                {/* <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
+                  <i className="fi fi-rr-bell text-xl block mt-1 " />
+                  {new_notification_available && (
+                    <span className="bg-red w-3 h-3 rounded-full absolute z-10 top-2 right-2"></span>
+                  )}
+                </button> */}
               </Link>
 
               <div
                 className="relative"
                 onClick={handleUserNavPanel}
                 onBlur={handleBlur}>
-                <button className="w-12 h-12 mt-1">
+                <Button className="w-12 h-12 mt-1">
                   <img
                     src={profile_img}
                     className="w-full h-full object-cover rounded-full"
                     alt=""
                   />
-                </button>
+                </Button>
+                {/* <button className="w-12 h-12 mt-1">
+                  <img
+                    src={profile_img}
+                    className="w-full h-full object-cover rounded-full"
+                    alt=""
+                  />
+                </button> */}
               </div>
 
               {userNavPanel && <UserNavigation />}

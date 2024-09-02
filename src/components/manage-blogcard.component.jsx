@@ -4,6 +4,7 @@ import { getDay } from "../common/date";
 import { UserContext } from "../App";
 import axios from "axios";
 import Image from "./lazy-image-component";
+import Button from "../common/button.component";
 
 const BlogStats = ({ stats }) => {
   return (
@@ -67,19 +68,31 @@ export const ManageBlogCard = ({ blog }) => {
               Edit
             </Link>
 
-            <button
+            <Button
               className="lg:hidden pr-4 py-2 underline "
               onClick={() => {
                 setShowStats((preVal) => !preVal);
               }}>
               Status
-            </button>
+            </Button>
+            {/* <button
+              className="lg:hidden pr-4 py-2 underline "
+              onClick={() => {
+                setShowStats((preVal) => !preVal);
+              }}>
+              Status
+            </button> */}
 
-            <button
+            <Button
+              className="pr-4 py-2 underline text-red"
+              onClick={(e) => deleteBlog(blog, access_token)}>
+              Delete
+            </Button>
+            {/* <button
               className="pr-4 py-2 underline text-red"
               onClick={(e) => deleteBlog(blog, access_token, e.target)}>
               Delete
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -125,11 +138,17 @@ export const ManageDraftCard = ({ blog }) => {
               Edit
             </Link>
 
-            <button
+            <Button
               className="pr-4 py-2 underline text-red"
-              onClick={(e) => deleteBlog(blog, access_token, e.target)}>
+              onClick={(e) => deleteBlog(blog, access_token)}>
               Delete
-            </button>
+            </Button>
+
+            {/* <button
+              className="pr-4 py-2 underline text-red"
+              onClick={(e) => deleteBlog(blog, access_token)}>
+              Delete
+            </button> */}
           </div>
         </div>
       </div>
@@ -140,7 +159,7 @@ export const ManageDraftCard = ({ blog }) => {
 const deleteBlog = (blog, access_token, target) => {
   let { index, blog_id, setStateFunc } = blog;
 
-  target.setAttribute("disabled", true);
+  // target.setAttribute("disabled", true);
 
   axios
     .post(
@@ -149,7 +168,7 @@ const deleteBlog = (blog, access_token, target) => {
       { headers: { Authorization: `Bearer ${access_token}` } }
     )
     .then(({ data }) => {
-      target.removeAttribute("disabled");
+      // target.removeAttribute("disabled");
 
       setStateFunc((preVal) => {
         let { deletedDocCount, totalDocs, result } = preVal;

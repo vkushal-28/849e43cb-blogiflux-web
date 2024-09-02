@@ -5,6 +5,7 @@ import axios from "axios";
 import NoDataMessage from "./nodata.component";
 import AnimationWrapper from "../common/page-animation";
 import CommentCard from "./comment-card.component";
+import Button from "../common/button.component";
 
 export const fetchComments = async ({
   skip = 0,
@@ -76,11 +77,16 @@ const CommentsContainer = () => {
         <p className="text-lg mt-2 w-[70%] text-dark-grey line-clamp-1">
           {title}
         </p>
-        <button
+        <Button
+          className="absolute top-0 right-0 flex justify-center items-center w-12 h-12 rounded-full bg-grey"
+          onClick={() => setCommentsWrapper((prevVal) => !prevVal)}>
+          <i className="fi fi-br-cross text-lg mt-1"></i>
+        </Button>
+        {/* <button
           className="absolute top-0 right-0 flex justify-center items-center w-12 h-12 rounded-full bg-grey"
           onClick={() => setCommentsWrapper((prevVal) => !prevVal)}>
           <i className="fi fi-br-cross text-2xl mt-1"></i>
-        </button>
+        </button> */}
       </div>
       <hr className="border-grey my-8 w-[120%] -ml-10" />
       <CommentField action={"Comment"} />
@@ -100,11 +106,16 @@ const CommentsContainer = () => {
         <NoDataMessage message={"No Comments Found"} />
       )}
       {total_parent_comments > totalParentCommentsLoaded && (
-        <button
+        <Button
           className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
           onClick={loadMoreComments}>
           Load more..
-        </button>
+        </Button>
+        // <button
+        //   className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
+        //   onClick={loadMoreComments}>
+        //   Load more..
+        // </button>
       )}
     </div>
   );

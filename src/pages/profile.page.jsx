@@ -8,9 +8,11 @@ import AboutUser from "../components/about.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";
 import InPageNavigation from "../components/inpage-navigation.component";
 import NoDataMessage from "../components/nodata.component";
-import LoadMoreData from "../components/load-more.component";
+import LoadMoreData from "../common/load-more.component";
 import BlogPostCard from "../components/blog-post.component";
 import PageNotFound from "./404.page";
+import { getProfileDetailsApi, getSearchedBlogsApi } from "../common/api";
+import apiRequest from "../common/api/apiRequest";
 
 export const profileDataStructure = {
   personal_info: {
@@ -30,6 +32,8 @@ export const profileDataStructure = {
 const ProfilePage = () => {
   const { id: profileId } = useParams();
 
+  console.log(profileId);
+
   const [profile, setProfile] = useState(profileDataStructure);
   const [loading, setLoading] = useState(true);
   const [profileLoaded, setProfileLoaded] = useState("");
@@ -46,45 +50,77 @@ const ProfilePage = () => {
     userAuth: { username },
   } = useContext(UserContext);
 
-  console.log("bio", bio);
   const fetchUserProfile = async () => {
-    await axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-profile", {
+    try {
+      const { data: user } = await apiRequest("POST", getProfileDetailsApi, {
         username: profileId,
-      })
-      .then(({ data: user }) => {
-        if (user !== null) setProfile(user);
-
-        setLoading(false);
-        setProfileLoaded(profileId);
-        fetchBlogs({ user_id: user._id });
-      })
-      .catch((err) => {
-        setLoading(false);
       });
+      if (user !== null) setProfile(user);
+
+      setLoading(false);
+      setProfileLoaded(profileId);
+      fetchBlogs({ user_id: user._id });
+    } catch (error) {
+      console.error("Failed to fetch user data:", error.response);
+      setLoading(false);
+    }
+
+    // await axios
+    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-profile", {
+    //     username: profileId,
+    //   })
+    //   .then(({ data: user }) => {
+    //     if (user !== null) setProfile(user);
+
+    //     setLoading(false);
+    //     setProfileLoaded(profileId);
+    //     fetchBlogs({ user_id: user._id });
+    //   })
+    //   .catch((err) => {
+    //     setLoading(false);
+    //   });
   };
 
-  const fetchBlogs = ({ page = 1, user_id }) => {
+  const fetchBlogs = async ({ page = 1, user_id }) => {
     user_id = user_id == undefined ? blogs.user_id : user_id;
 
-    axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
+    try {
+      const { data } = await apiRequest("POST", getSearchedBlogsApi, {
         author: user_id,
         page,
-      })
-      .then(async ({ data }) => {
-        let formatedData = await filterPaginationdata({
-          state: blogs,
-          data: data.blogs,
-          page,
-          countRoute: "/search-blogs-count",
-          data_to_send: { author: user_id },
-        });
+      });
+      let formatedData = await filterPaginationdata({
+        state: blogs,
+        data: data.blogs,
+        page,
+        countRoute: "/search-blogs-count",
+        data_to_send: { author: user_id },
+      });
 
-        formatedData.user_id = user_id;
-        setBlogs(formatedData);
-      })
-      .catch((err) => {});
+      formatedData.user_id = user_id;
+      setBlogs(formatedData);
+    } catch (error) {
+      console.error("Failed to fetch userblogs:", error.response);
+    }
+
+    // axios
+    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
+    //     author: user_id,
+    //     page,
+    //   })
+    //   .then(async ({ data }) => {
+    //     let formatedData = await filterPaginationdata({
+    //       state: blogs,
+    //       data: data.blogs,
+    //       page,
+    //       countRoute: "/search-blogs-count",
+    //       data_to_send: { author: user_id },
+    //     });
+
+    //     formatedData.user_id = user_id;
+    //     setBlogs(formatedData);
+    //   })
+    //   .catch((err) => {});
   };
 
   useEffect(() => {

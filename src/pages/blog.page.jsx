@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AnimationWrapper from "../common/page-animation";
 import Loader from "../components/loader.component";
-import axios from "axios";
 import { getDay } from "../common/date";
 import BlogInteraction from "../components/blog-interaction.component";
 import BlogPostCard from "../components/blog-post.component";
@@ -11,6 +10,8 @@ import CommentsContainer, {
   fetchComments,
 } from "../components/comments.component";
 import Image from "../components/lazy-image-component";
+import { getBlogDetailsApi, getSearchedBlogsApi } from "../common/api";
+import apiRequest from "../common/api/apiRequest";
 
 const blogStructure = {
   title: "",
@@ -27,8 +28,10 @@ const blogStructure = {
 export const BlogContext = createContext({});
 
 const BlogPage = () => {
+  // url params
   const { blog_id } = useParams();
 
+  // State Data
   const [blog, setBlog] = useState(blogStructure);
   const [similarBlogs, setSimilarBlogs] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -47,30 +50,59 @@ const BlogPage = () => {
   } = blog;
 
   const fetchBlog = async () => {
-    await axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", { blog_id })
-      .then(async ({ data: { blog } }) => {
-        blog.comments = await fetchComments({
-          blog_id: blog._id,
-          setParentCommentCountFunc: setTotalParentCommentsLoaded,
-        });
+    try {
+      const {
+        data: { blog },
+      } = await apiRequest("POST", getBlogDetailsApi, { blog_id });
 
-        setBlog(blog);
-
-        await axios
-          .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-            tag: blog.tags[0],
-            limit: 6,
-            eliminate_blog: blog_id,
-          })
-          .then(({ data }) => {
-            setSimilarBlogs(data.blogs);
-          });
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
+      blog.comments = await fetchComments({
+        blog_id: blog._id,
+        setParentCommentCountFunc: setTotalParentCommentsLoaded,
       });
+
+      setBlog(blog);
+
+      try {
+        const { data } = await apiRequest("POST", getSearchedBlogsApi, {
+          tag: blog.tags[0],
+          limit: 6,
+          eliminate_blog: blog_id,
+        });
+        setSimilarBlogs(data.blogs);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error.response);
+      }
+
+      setLoading(false);
+    } catch (error) {
+      console.error("Failed to fetch blog details:", error.response);
+      setLoading(false);
+    }
+
+    // await axios
+    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", { blog_id })
+    //   .then(async ({ data: { blog } }) => {
+    //     blog.comments = await fetchComments({
+    //       blog_id: blog._id,
+    //       setParentCommentCountFunc: setTotalParentCommentsLoaded,
+    //     });
+
+    //     setBlog(blog);
+
+    //     await axios
+    //       .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
+    //         tag: blog.tags[0],
+    //         limit: 6,
+    //         eliminate_blog: blog_id,
+    //       })
+    //       .then(({ data }) => {
+    //         setSimilarBlogs(data.blogs);
+    //       });
+    //     setLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     setLoading(false);
+    //   });
   };
 
   useEffect(() => {
@@ -148,8 +180,10 @@ const BlogPage = () => {
                 );
               })}
 
+            {/* render blog interaction component */}
             <BlogInteraction />
 
+            {/* render similar blogs */}
             {similarBlogs !== null && similarBlogs.length ? (
               <>
                 <h1 className="text-2xl mt-14 mb-10 font-medium">

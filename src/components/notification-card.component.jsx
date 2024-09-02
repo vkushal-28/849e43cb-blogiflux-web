@@ -4,6 +4,7 @@ import { getDay } from "../common/date";
 import NotificationCommentField from "./notification-comment-field.component";
 import { UserContext } from "../App";
 import axios from "axios";
+import Button from "../common/button.component";
 
 const NotificationCard = ({ data, index, notificationState }) => {
   const [isReplying, setIsReplying] = useState(false);
@@ -42,7 +43,7 @@ const NotificationCard = ({ data, index, notificationState }) => {
   };
 
   const handleDelete = (comment_id, type, target) => {
-    target.setAttribute("disabled", true);
+    // target.setAttribute("disabled", true);
 
     axios
       .post(
@@ -56,7 +57,7 @@ const NotificationCard = ({ data, index, notificationState }) => {
         } else {
           delete result[index].reply;
         }
-        target.removeAttribute("disabled");
+        // target.removeAttribute("disabled");
 
         setNotifications({
           ...notifications,
@@ -121,18 +122,29 @@ const NotificationCard = ({ data, index, notificationState }) => {
           <>
             {!reply && (
               <>
-                <button
+                <Button
                   className="underline hover:text-black"
                   onClick={handleReplyClick}>
                   Reply
-                </button>
+                </Button>
+                {/* <button
+                  className="underline hover:text-black"
+                  onClick={handleReplyClick}>
+                  Reply
+                </button> */}
               </>
             )}
-            <button
+
+            <Button
+              className="underline hover:text-black"
+              onClick={(e) => handleDelete(comment._id, "comment")}>
+              Delete
+            </Button>
+            {/* <button
               className="underline hover:text-black"
               onClick={(e) => handleDelete(comment._id, "comment", e.target)}>
               Delete
-            </button>
+            </button> */}
           </>
         ) : (
           ""
@@ -181,11 +193,17 @@ const NotificationCard = ({ data, index, notificationState }) => {
           </div>
           <p className="ml-14 font-gelasio text-xl my-2">{reply.comment}</p>
 
-          <button
+          <Button
+            className="underline hover:text-black ml-14 mt-2"
+            onClick={(e) => handleDelete(reply._id, "reply")}>
+            Delete
+          </Button>
+
+          {/* <button
             className="underline hover:text-black ml-14 mt-2"
             onClick={(e) => handleDelete(reply._id, "reply", e.target)}>
             Delete
-          </button>
+          </button> */}
         </div>
       )}
     </div>

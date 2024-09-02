@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { ThemeContext } from "../../App";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Link } from "react-router-dom";
 
-export const NotificationLoader = ({ type }) => {
+export const NotificationLoader = ({ type, seen }) => {
   const { theme } = useContext(ThemeContext);
 
   const [width, setWidth] = useState(window.innerWidth);

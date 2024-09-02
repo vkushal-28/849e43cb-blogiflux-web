@@ -4,8 +4,9 @@ import { Navigate, useParams } from "react-router-dom";
 import BlogEditor from "../components/blog-editor.component";
 import PublishForm from "../components/publish-form.component";
 import Loader from "../components/loader.component";
-import axios from "axios";
-import PageNotFound from "./404.page";
+import { getBlogDetailsApi } from "../common/api";
+import toast from "react-hot-toast";
+import apiRequest from "../common/api/apiRequest";
 
 const blogStructure = {
   title: "",
@@ -34,22 +35,43 @@ const Editor = () => {
       return setLoading(false);
     }
 
-    axios
-      .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", {
+    // axios
+    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", {
+    //     blog_id,
+    //     draft: true,
+    //     mode: "edit",
+    //   })
+    //   .then(({ data: { blog } }) => {
+    //     setBlog(blog);
+    //     setLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     setBlog(blog);
+    //     setLoading(false);
+    //     console.log(err.message);
+    //   });
+
+    getBlogDetails();
+  }, []);
+
+  const getBlogDetails = async () => {
+    try {
+      const {
+        data: { blog },
+      } = await apiRequest("POST", getBlogDetailsApi, {
         blog_id,
         draft: true,
         mode: "edit",
-      })
-      .then(({ data: { blog } }) => {
-        setBlog(blog);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setBlog(blog);
-        setLoading(false);
-        console.log(err.message);
       });
-  }, []);
+      setBlog(blog);
+      setLoading(false);
+    } catch (error) {
+      setBlog(blog);
+      setLoading(false);
+      console.error("Failed to get blog details:", error.message);
+      return toast.error(error.message);
+    }
+  };
 
   return (
     <EditorContext.Provider

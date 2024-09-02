@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { ThemeContext } from "../App";
 
 const PageNotFound = () => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  // Context Data
+  const { theme } = useContext(ThemeContext);
 
   return (
     <section className="h-cover relative p-10 flex flex-col items-center gap-20 text-center">

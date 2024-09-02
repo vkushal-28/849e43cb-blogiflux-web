@@ -4,12 +4,11 @@ import InPageNavigation, {
   activeTabRef,
 } from "../components/inpage-navigation.component";
 import axios from "axios";
-import Loader from "../components/loader.component";
 import BlogPostCard from "../components/blog-post.component";
 import MinimalBlogPostCard from "../components/nobanner-blog-post.component";
 import NoDataMessage from "../components/nodata.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";
-import LoadMoreData from "../components/load-more.component";
+import LoadMoreData from "../common/load-more.component";
 import {
   BlogListLoader,
   MinimalBlogListLoader,

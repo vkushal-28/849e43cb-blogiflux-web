@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../App";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
+import Button from "../common/button.component";
 
 const BlogInteraction = () => {
   let {
@@ -89,7 +90,7 @@ const BlogInteraction = () => {
       <hr className="border-grey my-2" />
       <div className="flex gap-6 justify-between">
         <div className="flex gap-3 items-center">
-          <button
+          <Button
             className={
               "w-10 h-10 rounded-full flex items-center justify-center " +
               (isLikedByUser ? "bg-red/20 text-red" : " bg-grey/80")
@@ -100,13 +101,30 @@ const BlogInteraction = () => {
                 "fi " + (isLikedByUser ? "fi-sr-heart" : "fi-rr-heart")
               }
             />
-          </button>
+          </Button>
+          {/* <button
+            className={
+              "w-10 h-10 rounded-full flex items-center justify-center " +
+              (isLikedByUser ? "bg-red/20 text-red" : " bg-grey/80")
+            }
+            onClick={handleLike}>
+            <i
+              className={
+                "fi " + (isLikedByUser ? "fi-sr-heart" : "fi-rr-heart")
+              }
+            />
+          </button> */}
           <p className="text-xl text-dark-grey">{total_likes || 0}</p>
-          <button
+          <Button
             className="w-10 h-10 rounded-full flex items-center justify-center bg-grey/80"
             onClick={() => setCommentsWrapper((preVal) => !preVal)}>
             <i className="fi fi-rr-comment-dots" />
-          </button>
+          </Button>
+          {/* <button
+            className="w-10 h-10 rounded-full flex items-center justify-center bg-grey/80"
+            onClick={() => setCommentsWrapper((preVal) => !preVal)}>
+            <i className="fi fi-rr-comment-dots" />
+          </button> */}
           <p className="text-xl text-dark-grey">{total_comments}</p>
         </div>
 
