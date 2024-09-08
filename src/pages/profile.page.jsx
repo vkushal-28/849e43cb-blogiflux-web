@@ -13,6 +13,7 @@ import BlogPostCard from "../components/blog-post.component";
 import PageNotFound from "./404.page";
 import { getProfileDetailsApi, getSearchedBlogsApi } from "../common/api";
 import apiRequest from "../common/api/apiRequest";
+import { BlogListLoader } from "../components/loaders/blog-loader.component";
 
 export const profileDataStructure = {
   personal_info: {
@@ -184,7 +185,7 @@ const ProfilePage = () => {
               defaultHidden={["About"]}>
               <>
                 {blogs == null ? (
-                  <Loader />
+                  <BlogListLoader />
                 ) : blogs.result.length ? (
                   blogs.result.map((blog, i) => {
                     return (

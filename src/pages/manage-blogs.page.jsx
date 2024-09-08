@@ -1,9 +1,7 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { filterPaginationdata } from "../common/filter-pagination-data";
 import InPageNavigation from "../components/inpage-navigation.component";
-import Loader from "../components/loader.component";
 import AnimationWrapper from "../common/page-animation";
 import {
   ManageBlogCard,
@@ -14,6 +12,7 @@ import LoadMoreData from "../common/load-more.component";
 import { useSearchParams } from "react-router-dom";
 import { getUserWrittenBlogsApi } from "../common/api";
 import apiRequest from "../common/api/apiRequest";
+import { PublishedBlogLoader } from "../components/loaders/blog-loader.component";
 
 const ManageBlogs = () => {
   const [blogs, setBlogs] = useState(null);
@@ -113,8 +112,8 @@ const ManageBlogs = () => {
 
   return (
     <>
-      <h1 className="max-md:hidden">Manage Blogs</h1>
-      <div className="relative max-md:mt-5 md:mt-8 mb-10">
+      <h1 className="max-md:hidden text-xl mt-1">Manage Blogs</h1>
+      <div className="w-full relative max-md:mt-5 md:mt-8 mb-10">
         <input
           type="search"
           className="w-full bg-grey p-4 pl-12 pr-6 rounded-full placeholder:text-dark-grey"
@@ -130,7 +129,7 @@ const ManageBlogs = () => {
         defaultHidden={[""]}
         defaultActiveIndex={activeTab !== "draft" ? 0 : 1}>
         {blogs === null ? (
-          <Loader />
+          <PublishedBlogLoader />
         ) : blogs.result.length ? (
           <>
             {blogs.result.map((blog, i) => {
@@ -156,7 +155,7 @@ const ManageBlogs = () => {
           <NoDataMessage message="No published blogs" />
         )}
         {drafts === null ? (
-          <Loader />
+          <PublishedBlogLoader draft={true} />
         ) : drafts.result.length ? (
           <>
             {drafts.result.map((blog, i) => {

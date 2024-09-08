@@ -70,6 +70,7 @@ const Navbar = () => {
     storeInSession("theme", newTheme);
   };
 
+  console.log(new_notification_available);
   return (
     <>
       <nav className="navbar z-50">
@@ -134,18 +135,18 @@ const Navbar = () => {
           {access_token ? (
             <>
               <Link to="/dashboard/notifications">
-                <Button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
+                {/* <Button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
                   <i className="fi fi-rr-bell text-xl block mt-1 " />
                   {new_notification_available && (
                     <span className="bg-red w-3 h-3 rounded-full absolute z-10 top-2 right-2"></span>
                   )}
-                </Button>
-                {/* <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
+                </Button> */}
+                <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
                   <i className="fi fi-rr-bell text-xl block mt-1 " />
                   {new_notification_available && (
                     <span className="bg-red w-3 h-3 rounded-full absolute z-10 top-2 right-2"></span>
                   )}
-                </button> */}
+                </button>
               </Link>
 
               <div
