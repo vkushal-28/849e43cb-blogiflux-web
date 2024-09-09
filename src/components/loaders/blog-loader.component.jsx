@@ -20,7 +20,7 @@ export const BlogListLoader = () => {
       highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
       {Array.apply(null, { length: 5 }).map((e, i) => (
         <div
-          className="flex gap-8 items-center border-b border-grey pb-9 mb-6"
+          className="flex gap-8 items-center border-b border-grey pb-7 mb-6"
           key={i}>
           <div className="w-full">
             <div className="flex gap-2 items-center mb-4">
@@ -39,13 +39,24 @@ export const BlogListLoader = () => {
               <Skeleton count={1} width={"70%"} height={25} />
             </h1>
 
-            <p className="my-3  max-sm:hidden md:max-[1100px]:hidden ">
-              <Skeleton count={1} width={"90%"} height={15} />
+            <p className="my-3   max-sm:hidden md:max-[1100px]:hidden ">
+              <Skeleton count={1} width={"100%"} height={12} />
+              <Skeleton count={1} width={"80%"} height={12} />
             </p>
 
             <div className="flex gap-4 mt-8">
-              <Skeleton count={1} width={80} height={30} />
-              <Skeleton count={1} width={80} height={30} />
+              <Skeleton
+                count={1}
+                width={80}
+                height={25}
+                className="rounded-full"
+              />
+              <Skeleton
+                count={1}
+                width={80}
+                height={25}
+                className="rounded-full"
+              />
             </div>
           </div>
           <div className="h-28 aspect-square pt-8">

@@ -70,11 +70,14 @@ const NotificationCard = ({ data, index, notificationState }) => {
 
   return (
     <div
-      className={`p-6 border-b border-grey border-l-black  ${
+      className={`p-1 py-4 md:px-4 lg:px-6 border-b border-grey border-l-black  ${
         !seen && " border-l-2"
       }`}>
-      <div className="flex gap-5 mb-3">
-        <img src={profile_img} className="w-14 h-14 flex-none rounded-full" />
+      <div className="flex gap-3 lg:gap-5 mb-3">
+        <img
+          src={profile_img}
+          className="w-10 h-10 lg:w-14 lg:h-14 flex-none rounded-full"
+        />
         <div className="w-fill">
           <h1 className="font-medium text-xl text-dark-grey">
             <span className="lg:inline-block hidden capitalize">
@@ -166,7 +169,7 @@ const NotificationCard = ({ data, index, notificationState }) => {
       )}
 
       {reply && (
-        <div className="ml-20 p-5 bg-grey mt-5 rounded-md">
+        <div className="ml-20 p-5 bg-grey mt-5 rounded-md w-fit lg:w-full">
           <div className="flex gap-3 mb-3">
             <img
               src={author_profile_image}

@@ -14,6 +14,7 @@ import PageNotFound from "./404.page";
 import { getProfileDetailsApi, getSearchedBlogsApi } from "../common/api";
 import apiRequest from "../common/api/apiRequest";
 import { BlogListLoader } from "../components/loaders/blog-loader.component";
+import { ProfileDetailsLoader } from "../components/loaders/profile-loader-component";
 
 export const profileDataStructure = {
   personal_info: {
@@ -143,7 +144,7 @@ const ProfilePage = () => {
   return (
     <AnimationWrapper>
       {loading ? (
-        <Loader />
+        <ProfileDetailsLoader />
       ) : profile_username.length ? (
         <section className="h-cover md:flex flex-row-reverse items-start gap-5 min-[1100px]:gap-12">
           <div className="flex flex-col max-md:items-center gap-5 min-w-[250px]">

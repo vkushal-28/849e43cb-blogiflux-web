@@ -90,7 +90,7 @@ const UserAuthForm = ({ type }) => {
     <AnimationWrapper>
       <section className="h-cover flex items-center justify-center">
         <Toaster />
-        <form className="w-[80%] max-w-[400px]" id="formElement">
+        <form className="w-[100%] md:w-[80%] max-w-[400px]" id="formElement">
           <h1 className="text-4xl font-gelasio capitalize text-center mb-24">
             {type === "sign-in" ? "Welcome back" : "Join us today"}
           </h1>
@@ -152,9 +152,9 @@ const UserAuthForm = ({ type }) => {
           </button>
 
           {type === "sign-in" ? (
-            <p className="mt-6 text-dark-grey text-xl text-center">
+            <p className="mt-6 text-dark-grey  text-center">
               Don't have an account?{" "}
-              <Link to="/signup" className="underline text-vlack text-xl ml-1">
+              <Link to="/signup" className="underline text-vlack  ml-1">
                 Join us today
               </Link>
             </p>

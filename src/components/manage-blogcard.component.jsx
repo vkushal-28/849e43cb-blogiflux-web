@@ -44,7 +44,7 @@ export const ManageBlogCard = ({ blog }) => {
   return (
     <>
       <div
-        className="flex gap-10 border-b mb-6 max-md:px-4 border-grey pb-6 items-center"
+        className="flex gap-0 md:gap-10 border-b mb-3 md:mb-6 max-md:px-4 border-grey pb-3 md:pb-6 items-center"
         keu={index}>
         <Image
           src={banner}
@@ -53,7 +53,7 @@ export const ManageBlogCard = ({ blog }) => {
           alt=""
         />
 
-        <div className="flex flex-col justify-between py-2 w-full min-w-[300px] ">
+        <div className="flex flex-col justify-between py-2  w-full min-w-[300px] ">
           <div>
             <Link
               to={`/blog/${blog_id}`}
@@ -120,9 +120,9 @@ export const ManageDraftCard = ({ blog }) => {
   return (
     <>
       <div
-        className="flex gap-10 border-b mb-6 max-md:px-4 border-grey pb-6 items-center"
+        className="flex gap-10 border-b mb-3 md:mb-6 max-md:px-4 border-grey pb-3 md:pb-6 items-center"
         key={index}>
-        <h1 className="blog-index text-center pl-4 md:pl-6 flex-none">
+        <h1 className="blog-index text-center pl-0  md:pl-6 flex-none">
           {index < 10 ? "0" + index : index}
         </h1>
 

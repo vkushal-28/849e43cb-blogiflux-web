@@ -1,14 +1,15 @@
-// import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { filterPaginationdata } from "../common/filter-pagination-data";
 import AnimationWrapper from "../common/page-animation";
 import NotificationCard from "../components/notification-card.component";
 import LoadMoreData from "../common/load-more.component";
-import { NotificationLoader } from "../components/loaders/dashboard-loader.component";
+import {
+  NotificationCategoryLoader,
+  NotificationLoader,
+} from "../components/loaders/dashboard-loader.component";
 import apiRequest from "../common/api/apiRequest";
 import { getNotificationsApi } from "../common/api";
-import Loader from "../components/loader.component";
 
 const Notifications = () => {
   let {
@@ -90,35 +91,43 @@ const Notifications = () => {
   };
 
   useEffect(() => {
-    if (access_token) fetchNotifications({ page: 1 });
+    if (access_token) {
+      fetchNotifications({ page: 1 });
+    }
+    console.log(filter);
   }, [access_token, filter]);
 
   const handleFilter = (e) => {
     const { innerHTML } = e.target;
 
     setFilter(innerHTML);
-    setNotifications(null);
+    filter !== innerHTML && setNotifications(null);
   };
 
   return (
-    <div>
+    <>
       <h1 className="max-md:hidden">Recent Notifications</h1>
-      <div className="my-8 flex gap-6 ">
-        {filters.map((filtername, i) => {
-          return (
-            <button
-              key={i}
-              className={` ${
-                filter == filtername ? "btn-dark" : "btn-light"
-              } py-2 `}
-              onClick={handleFilter}>
-              {filtername}
-            </button>
-          );
-        })}
+      <div className="w-full my-5 lg:my-8 flex gap-2 lg:gap-6">
+        {notifications === null ? (
+          <NotificationCategoryLoader />
+        ) : (
+          filters.map((filtername, i) => {
+            return (
+              <button
+                key={i}
+                className={` ${
+                  filter == filtername ? "btn-dark" : "btn-light"
+                } py-2 `}
+                onClick={handleFilter}>
+                {filtername}
+              </button>
+            );
+          })
+        )}
       </div>
       {notifications === null ? (
-        <Loader />
+        // <Loader />
+        <NotificationLoader type={filter} />
       ) : (
         // <NotificationLoader type={filter} />
         <>
@@ -145,7 +154,7 @@ const Notifications = () => {
           />
         </>
       )}
-    </div>
+    </>
   );
 };
 
