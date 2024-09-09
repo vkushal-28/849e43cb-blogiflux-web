@@ -11,12 +11,6 @@ const LoadMoreData = ({ state, fetchDataFunc, additaionalParam }) => {
         }>
         Load more...
       </Button>
-      // <button
-      //   onClick={() =>
-      //     fetchDataFunc({ ...additaionalParam, page: state.page + 1 })
-      //   }>
-      //   Load more...
-      // </button>
     );
   }
 };

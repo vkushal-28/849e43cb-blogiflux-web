@@ -1,4 +1,3 @@
-// importing tools
 import Embed from "@editorjs/embed";
 import List from "@editorjs/list";
 import Image from "@editorjs/image";

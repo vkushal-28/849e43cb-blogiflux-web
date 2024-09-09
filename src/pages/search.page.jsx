@@ -7,12 +7,12 @@ import BlogPostCard from "../components/blog-post.component";
 import NoDataMessage from "../components/nodata.component";
 import LoadMoreData from "../common/load-more.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";
-// import axios from "axios";
 import UserCard from "../components/usercard.component";
 import apiRequest from "../common/api/apiRequest";
 import { getSearchedBlogsApi, searchUsersAPI } from "../common/api";
 
 const SearchPage = () => {
+  // fetch params data
   const { query } = useParams();
 
   // state data
@@ -38,27 +38,6 @@ const SearchPage = () => {
     } catch (error) {
       console.error("Failed to fetch user data:", error.response);
     }
-
-    // await axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-    //     query,
-    //     page,
-    //   })
-    //   .then(async ({ data }) => {
-    //     let formatedData = await filterPaginationdata({
-    //       state: blogs,
-    //       data: data.blogs,
-    //       page,
-    //       countRoute: "/search-blogs-count",
-    //       data_to_send: { query },
-    //       create_new_arr,
-    //     });
-
-    //     setBlogs(formatedData);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   const fetchUsers = async () => {
@@ -72,12 +51,6 @@ const SearchPage = () => {
     } catch (error) {
       console.error("Failed to fetch user data:", error.response);
     }
-
-    // axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-users", { query })
-    //   .then(({ data: { users } }) => {
-    //     setUsers(users);
-    //   });
   };
   useEffect(() => {
     resetAllState();

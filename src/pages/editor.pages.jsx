@@ -20,12 +20,16 @@ const blogStructure = {
 export const EditorContext = createContext(blogStructure);
 
 const Editor = () => {
+  // params hook
   const { blog_id } = useParams();
+
+  // state variables
   const [editorState, setEditorState] = useState("editor");
   const [textEditor, setTextEditor] = useState({ isReady: false });
   const [blog, setBlog] = useState(blogStructure);
   const [loading, setLoading] = useState(true);
 
+  // context data
   const {
     userAuth: { access_token, isAdmin },
   } = useContext(UserContext);
@@ -34,22 +38,6 @@ const Editor = () => {
     if (!blog_id) {
       return setLoading(false);
     }
-
-    // axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", {
-    //     blog_id,
-    //     draft: true,
-    //     mode: "edit",
-    //   })
-    //   .then(({ data: { blog } }) => {
-    //     setBlog(blog);
-    //     setLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     setBlog(blog);
-    //     setLoading(false);
-    //     console.log(err.message);
-    //   });
 
     getBlogDetails();
   }, []);

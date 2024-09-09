@@ -75,7 +75,7 @@ const BlogContent = ({ block }) => {
     return <List style={data.style} items={data.items}></List>;
   }
 
-  //   return <div>This is a block</div>;
+
 };
 
 export default BlogContent;

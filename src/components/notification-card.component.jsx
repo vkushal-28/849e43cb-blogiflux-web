@@ -43,8 +43,6 @@ const NotificationCard = ({ data, index, notificationState }) => {
   };
 
   const handleDelete = (comment_id, type, target) => {
-    // target.setAttribute("disabled", true);
-
     axios
       .post(
         import.meta.env.VITE_SERVER_DOMAIN + "/delete-comment",
@@ -57,7 +55,6 @@ const NotificationCard = ({ data, index, notificationState }) => {
         } else {
           delete result[index].reply;
         }
-        // target.removeAttribute("disabled");
 
         setNotifications({
           ...notifications,
@@ -97,18 +94,15 @@ const NotificationCard = ({ data, index, notificationState }) => {
                 : "replied on"}
             </span>
           </h1>
-          {
-            type == "reply" ? (
-              <div className="p-4 mt-4 rounded-md bg-grey">
-                <p>{replied_on_comment.comment}</p>
-              </div>
-            ) : (
-              <Link
-                to={`/blog/${blog_id}`}
-                className="font-medium text-dark-grey hover:underline line-clamp-1">{`"${title}"`}</Link>
-            )
-            // blog title
-          }
+          {type == "reply" ? (
+            <div className="p-4 mt-4 rounded-md bg-grey">
+              <p>{replied_on_comment.comment}</p>
+            </div>
+          ) : (
+            <Link
+              to={`/blog/${blog_id}`}
+              className="font-medium text-dark-grey hover:underline line-clamp-1">{`"${title}"`}</Link>
+          )}
         </div>
       </div>
 
@@ -130,11 +124,6 @@ const NotificationCard = ({ data, index, notificationState }) => {
                   onClick={handleReplyClick}>
                   Reply
                 </Button>
-                {/* <button
-                  className="underline hover:text-black"
-                  onClick={handleReplyClick}>
-                  Reply
-                </button> */}
               </>
             )}
 
@@ -143,11 +132,6 @@ const NotificationCard = ({ data, index, notificationState }) => {
               onClick={(e) => handleDelete(comment._id, "comment")}>
               Delete
             </Button>
-            {/* <button
-              className="underline hover:text-black"
-              onClick={(e) => handleDelete(comment._id, "comment", e.target)}>
-              Delete
-            </button> */}
           </>
         ) : (
           ""
@@ -201,12 +185,6 @@ const NotificationCard = ({ data, index, notificationState }) => {
             onClick={(e) => handleDelete(reply._id, "reply")}>
             Delete
           </Button>
-
-          {/* <button
-            className="underline hover:text-black ml-14 mt-2"
-            onClick={(e) => handleDelete(reply._id, "reply", e.target)}>
-            Delete
-          </button> */}
         </div>
       )}
     </div>

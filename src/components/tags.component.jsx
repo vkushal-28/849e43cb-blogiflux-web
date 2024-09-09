@@ -37,7 +37,6 @@ const Tag = ({ tag, tagIndex }) => {
       <p
         className="outline-none"
         onKeyDown={handleTagsEdit}
-        // contentEditable="true"
         onClick={addEditable}>
         {tag}
       </p>
@@ -46,11 +45,6 @@ const Tag = ({ tag, tagIndex }) => {
         onClick={handleTagDelete}>
         <i className="fi fi-br-cross text-sm pointer-events-none"></i>
       </Button>
-      {/* <button
-        className="mt-[2px] rounded-full absolute right-3 top-1/2 -translate-y-1/2"
-        onClick={handleTagDelete}>
-        <i className="fi fi-br-cross text-sm pointer-events-none"></i>
-      </button> */}
     </div>
   );
 };

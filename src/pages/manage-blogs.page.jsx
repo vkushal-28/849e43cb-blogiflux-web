@@ -15,11 +15,15 @@ import apiRequest from "../common/api/apiRequest";
 import { PublishedBlogLoader } from "../components/loaders/blog-loader.component";
 
 const ManageBlogs = () => {
+  // url params data
+  let activeTab = useSearchParams()[0].get("tab");
+
+  // state variables
   const [blogs, setBlogs] = useState(null);
   const [drafts, setDrafts] = useState(null);
   const [query, setQuery] = useState("");
 
-  let activeTab = useSearchParams()[0].get("tab");
+  // context data
   const {
     userAuth: { access_token },
   } = useContext(UserContext);
@@ -50,34 +54,6 @@ const ManageBlogs = () => {
     } catch (error) {
       console.error("Failed to fetch user data:", error.response);
     }
-
-    // axios
-    //   .post(
-    //     import.meta.env.VITE_SERVER_DOMAIN + "/user-written-blogs",
-    //     {
-    //       page,
-    //       draft,
-    //       query,
-    //       deletedDocCount,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${access_token}`,
-    //       },
-    //     }
-    //   )
-    //   .then(async ({ data }) => {
-    //     let formatedData = await filterPaginationdata({
-    //       state: draft ? drafts : blogs,
-    //       data: data.blogs,
-    //       page,
-    //       user: access_token,
-    //       countRoute: "/user-written-blogs-count",
-    //       data_to_send: { draft, query },
-    //     });
-
-    //     draft ? setDrafts(formatedData) : setBlogs(formatedData);
-    //   });
   };
 
   useEffect(() => {

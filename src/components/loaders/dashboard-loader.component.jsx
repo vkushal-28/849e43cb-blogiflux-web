@@ -78,14 +78,6 @@ export const NotificationLoader = ({ type }) => {
 export const NotificationCategoryLoader = () => {
   const { theme } = useContext(ThemeContext);
 
-  // const [width, setWidth] = useState(window.innerWidth);
-
-  // useEffect(() => {
-  //   window.addEventListener("resize", () => {
-  //     setWidth(window.innerWidth);
-  //   });
-  // }, [width]);
-
   return (
     <SkeletonTheme
       baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}

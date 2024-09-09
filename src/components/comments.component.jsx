@@ -111,11 +111,6 @@ const CommentsContainer = () => {
           onClick={loadMoreComments}>
           Load more..
         </Button>
-        // <button
-        //   className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
-        //   onClick={loadMoreComments}>
-        //   Load more..
-        // </button>
       )}
     </div>
   );

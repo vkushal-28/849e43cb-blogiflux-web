@@ -39,6 +39,7 @@ const BlogPage = () => {
   const [commentsWrapper, setCommentsWrapper] = useState(false);
   const [totalParentCommentsLoaded, setTotalParentCommentsLoaded] = useState(0);
 
+  // Destructure blog object
   let {
     title,
     content,
@@ -78,31 +79,6 @@ const BlogPage = () => {
       console.error("Failed to fetch blog details:", error.response);
       setLoading(false);
     }
-
-    // await axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-blog", { blog_id })
-    //   .then(async ({ data: { blog } }) => {
-    //     blog.comments = await fetchComments({
-    //       blog_id: blog._id,
-    //       setParentCommentCountFunc: setTotalParentCommentsLoaded,
-    //     });
-
-    //     setBlog(blog);
-
-    //     await axios
-    //       .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-    //         tag: blog.tags[0],
-    //         limit: 6,
-    //         eliminate_blog: blog_id,
-    //       })
-    //       .then(({ data }) => {
-    //         setSimilarBlogs(data.blogs);
-    //       });
-    //     setLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false);
-    //   });
   };
 
   useEffect(() => {
@@ -115,7 +91,6 @@ const BlogPage = () => {
     setSimilarBlogs(null);
     setLoading(null);
     setLikedByUser(false);
-    // setCommentsWrapper(false);
     setTotalParentCommentsLoaded(0);
   };
 
@@ -167,9 +142,10 @@ const BlogPage = () => {
               </div>
             </div>
 
+            {/* Blog integration component */}
             <BlogInteraction />
 
-            {/* Blog content */}
+            {/* Blog content component */}
             {content &&
               content.length &&
               content[0].blocks.map((block, i) => {

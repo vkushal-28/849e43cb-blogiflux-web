@@ -112,17 +112,11 @@ const BlogEditor = () => {
   };
 
   const handleSaveDraft = (e) => {
-    // if (e.target.className.includes("disable")) {
-    //   return;
-    // }
-
     if (!title.length) {
       return toast.error("Write blog title before save it as a draft");
     }
 
     let loadingToast = toast.loading("S aving Draft...");
-
-    // e.target.classList.add("disable");
 
     if (textEditor.isReady) {
       textEditor.save().then((content) => {
@@ -146,8 +140,6 @@ const BlogEditor = () => {
             }
           )
           .then(() => {
-            // e.target.classList.remove("disable");
-
             toast.dismiss(loadingToast);
             toast.success("Saved 👍🏼");
 
@@ -156,7 +148,6 @@ const BlogEditor = () => {
             }, 500);
           })
           .catch(({ response }) => {
-            // e.target.classList.remove("disable");
             toast.dismiss(loadingToast);
             return toast.error(response.data.error);
           });

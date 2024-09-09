@@ -12,12 +12,14 @@ import apiRequest from "../common/api/apiRequest";
 import { getNotificationsApi } from "../common/api";
 
 const Notifications = () => {
+  // context data
   let {
     userAuth,
     userAuth: { access_token, new_notification_available },
     setUserAuth,
   } = useContext(UserContext);
 
+  // state variables
   const [filter, setFilter] = useState("all");
   const [notifications, setNotifications] = useState(null);
 
@@ -54,40 +56,6 @@ const Notifications = () => {
     } catch (error) {
       console.error("Failed to fetch user data:", error.response);
     }
-
-    // axios
-    //   .post(
-    //     import.meta.env.VITE_SERVER_DOMAIN + "/notifications",
-    //     {
-    //       page,
-    //       filter,
-    //       deletedDocCount,
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${access_token}`,
-    //       },
-    //     }
-    //   )
-    //   .then(async ({ data: { notifications: data } }) => {
-    //     if (new_notification_available) {
-    //       setUserAuth({ ...userAuth, new_notification_available: false });
-    //     }
-
-    //     let formatedData = await filterPaginationdata({
-    //       state: notifications,
-    //       data,
-    //       page,
-    //       countRoute: "/all-notifications-count",
-    //       data_to_send: { filter },
-    //       user: access_token,
-    //     });
-
-    //     setNotifications(formatedData);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   useEffect(() => {
@@ -126,10 +94,8 @@ const Notifications = () => {
         )}
       </div>
       {notifications === null ? (
-        // <Loader />
         <NotificationLoader type={filter} />
       ) : (
-        // <NotificationLoader type={filter} />
         <>
           {notifications.result.length > 0
             ? notifications.result.map((notification, i) => {

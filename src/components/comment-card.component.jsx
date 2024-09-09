@@ -135,8 +135,6 @@ const CommentCard = ({ index, leftVal, commentData }) => {
   };
 
   const handleDeleteComment = (e) => {
-    // e.target.setAttribute("disabled", true);
-
     axios
       .post(
         import.meta.env.VITE_SERVER_DOMAIN + "/delete-comment",
@@ -148,7 +146,6 @@ const CommentCard = ({ index, leftVal, commentData }) => {
         }
       )
       .then(() => {
-        // e.target.removeAttribute("disabled");
         removeCommentCards(index + 1, true);
       })
       .catch((err) => {
@@ -168,12 +165,6 @@ const CommentCard = ({ index, leftVal, commentData }) => {
         <p className="font-gelasio text-xl ml-3">{comment}</p>
         <div className="flex gap-5 items-center mt-5">
           {commentData.isReplyLoaded ? (
-            // <button
-            //   type="button"
-            //   className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
-            //   onClick={handleReplies}>
-            //   <i className="fi fi-rs-comment-dots" /> Hide Reply
-            // </button>
             <Button
               className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
               onClick={handleReplies}>
@@ -185,19 +176,10 @@ const CommentCard = ({ index, leftVal, commentData }) => {
               onClick={loadReplies}>
               <i className="fi fi-rs-comment-dots" /> {children.length} Reply
             </Button>
-            // <button
-            //   type="button"
-            //   className="text-dark-grey p-2 px-3 hover:bg-grey/30 rounded-md flex items-center gap-2"
-            //   onClick={loadReplies}>
-            //   <i className="fi fi-rs-comment-dots" /> {children.length} Reply
-            // </button>
           )}
           <Button className="underline" onClick={handleReplyClick}>
             Reply
           </Button>
-          {/* <button className="underline" onClick={handleReplyClick}>
-            Reply
-          </button> */}
 
           {username == commented_by_username || username == blog_author ? (
             <Button
@@ -205,14 +187,7 @@ const CommentCard = ({ index, leftVal, commentData }) => {
               onClick={handleDeleteComment}>
               <i className="fi fi-rr-trash" />
             </Button>
-          ) : (
-            // <button
-            //     className="p-2 px-3 rounded-md border border-grey ml-auto hover:bg-red/10 hover:text-red flex items-center"
-            //     onClick={handleDeleteComment}>
-            //     <i className="fi fi-rr-trash" />
-            //   </button>
-            ""
-          )}
+          ) : null}
         </div>
         {isReplying && (
           <div className="mt-8">

@@ -108,7 +108,7 @@ const HomePage = () => {
   return (
     <AnimationWrapper>
       <section className="h-cover flex justify-center gap-10 ">
-        {/* Latest blogs */}
+        {/* Latest blogs component */}
 
         <div className="w-full">
           <InPageNavigation
@@ -161,7 +161,7 @@ const HomePage = () => {
           </InPageNavigation>
         </div>
 
-        {/* Filters and trending blogs */}
+        {/* Filters and trending blogs component */}
 
         <div className="min-w-[40%] lg:min-w-[400px] max-w-min border-l border-grey pl-8 pt-3 max-md:hidden">
           <div className="flex flex-col gap-5 mb-6">

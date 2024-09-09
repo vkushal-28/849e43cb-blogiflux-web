@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../App";
-// import axios from "axios";
 import { profileDataStructure } from "./profile.page";
 import { useState } from "react";
 import Loader from "../components/loader.component";
@@ -18,6 +17,7 @@ import apiRequest from "../common/api/apiRequest";
 import Button from "../common/button.component";
 
 const EditProfile = () => {
+  //  context data
   let {
     userAuth,
     userAuth: { username, access_token },
@@ -25,9 +25,12 @@ const EditProfile = () => {
   } = useContext(UserContext);
 
   let bioLimit = 150;
+
+  // ref hooks
   const profileImgElement = useRef();
   const editProfileForm = useRef();
 
+  // state variables
   const [profileData, setProfileData] = useState(profileDataStructure);
   const [loading, setLoading] = useState(true);
   const [charactersLeft, setCharactersLeft] = useState(bioLimit);
@@ -43,21 +46,13 @@ const EditProfile = () => {
     } catch (error) {
       console.error("Failed to fetch user data:", error.response);
     }
-
-    // axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-profile", {
-    //     username: username,
-    //   })
-    //   .then(({ data }) => {
-    //     data && setProfileData(data);
-    //     setLoading(false);
-    //   });
   };
 
   useEffect(() => {
     fetchProfileData();
   }, [access_token]);
 
+  // destructure profileData obj
   const {
     personal_info: {
       fullname,
@@ -82,9 +77,6 @@ const EditProfile = () => {
 
   const handleImageUpload = async () => {
     if (updatedProfileImg) {
-      // let loadingToast = toast.loading("Uploading...");
-      // e.target.setAttribute("disabled", true);
-
       await uploadImage(updatedProfileImg)
         .then(async (url) => {
           if (url) {
@@ -108,42 +100,10 @@ const EditProfile = () => {
               setUserAuth(newUserAuth);
 
               setupdatedProfileImg(null);
-              // toast.dismiss(loadingToast);
-              // e.target.removeAttribute("disabled");
               toast.success("Uploaded  ");
             } catch (error) {
               console.error("Failed to fetch profile data:", error.response);
-              // toast.dismiss(loadingToast);
-
-              // e.target.removeAttribute("disabled");
             }
-
-            // axios
-            //   .post(
-            //     import.meta.env.VITE_SERVER_DOMAIN + "/update-profile-image",
-            //     { url },
-            //     { headers: { Authorization: `Bearer ${access_token}` } }
-            //   )
-            //   .then(({ data }) => {
-            //     let newUserAuth = {
-            //       ...userAuth,
-            //       profile_img: data.profile_img,
-            //     };
-
-            //     storeInSession("user", JSON.stringify(newUserAuth));
-
-            //     setUserAuth(newUserAuth);
-
-            //     setupdatedProfileImg(null);
-            //     toast.dismiss(loadingToast);
-            //     e.target.removeAttribute("disabled");
-            //     toast.success("Uploaded  ");
-            //   })
-            //   .catch((err) => {
-            //     toast.dismiss(loadingToast);
-            //     e.target.removeAttribute("disabled");
-            //     console.log(err);
-            //   });
           }
         })
         .catch((err) => {
@@ -179,10 +139,6 @@ const EditProfile = () => {
       return toast.error(`Bio should not be more than ${bioLimit}`);
     }
 
-    // let loadingToast = toast.loading("Updating...");
-
-    // e.target.setAttribute("disabled", true);
-
     try {
       const { data } = await apiRequest(
         "POST",
@@ -208,51 +164,12 @@ const EditProfile = () => {
         setUserAuth(newUserAuth);
       }
 
-      // toast.dismiss(loadingToast);
-      // e.target.removeAttribute("disabled");
       toast.success("Profile Updated");
     } catch (error) {
       console.error("Failed to fetch user data:", error.response);
 
-      // toast.dismiss(loadingToast);
-      // e.target.removeAttribute("disabled");
       toast.error(error.response.data.error);
     }
-
-    // axios
-    //   .post(
-    //     import.meta.env.VITE_SERVER_DOMAIN + "/update-profile",
-    //     {
-    //       username,
-    //       bio,
-    //       social_links: {
-    //         youtube,
-    //         facebook,
-    //         github,
-    //         instagram,
-    //         twitter,
-    //         website,
-    //       },
-    //     },
-    //     { headers: { Authorization: `Bearer ${access_token}` } }
-    //   )
-    //   .then(({ data }) => {
-    //     if (userAuth.username !== data.username) {
-    //       let newUserAuth = { ...userAuth, username: data.username };
-
-    //       storeInSession("user", JSON.stringify(newUserAuth));
-    //       setUserAuth(newUserAuth);
-    //     }
-
-    //     toast.dismiss(loadingToast);
-    //     e.target.removeAttribute("disabled");
-    //     toast.success("Profile Updated");
-    //   })
-    //   .catch(({ response }) => {
-    //     toast.dismiss(loadingToast);
-    //     e.target.removeAttribute("disabled");
-    //     toast.error(response.data.error);
-    //   });
   };
 
   return (
@@ -285,11 +202,6 @@ const EditProfile = () => {
                 loadingText="Uploading...">
                 Upload
               </Button>
-              {/* <button
-                className="btn-light mt-5 max-lg:center lg:w-full px-10"
-                onClick={handleImageUpload}>
-                Upload
-              </button> */}
             </div>
             <div className="w-full">
               <div className="grid grid-cols-1 md:grid-cols-2 md:gap-5">
@@ -370,12 +282,6 @@ const EditProfile = () => {
                 loadingText="Updating...">
                 Update
               </Button>
-              {/* <button
-                className="btn-dark w-auto px-10 "
-                type="submit"
-                onClick={handleSubmit}>
-                Update
-              </button> */}
             </div>
           </div>
         </form>

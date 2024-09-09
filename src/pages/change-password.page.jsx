@@ -1,19 +1,13 @@
-import React, { useContext, useRef } from "react";
+import React, { useRef } from "react";
 import AnimationWrapper from "../common/page-animation";
 import InputBox from "../components/input.component";
 import toast from "react-hot-toast";
-// import axios from "axios";
-// import { UserContext } from "../App";
 import apiRequest from "../common/api/apiRequest";
 import { changePasswordApi } from "../common/api";
 import Button from "../common/button.component";
 
 const ChangePassword = () => {
-  // let {
-  //   userAuth: { access_token },
-  // } = useContext(UserContext);
-
-  // ref Hooks
+  // ref hooks
   const changePwdForm = useRef();
 
   let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/; // regex for password
@@ -39,7 +33,6 @@ const ChangePassword = () => {
         "Password should be 6 to 20 characters long with a numeric, 1 lowercase and 1 uppercase letters"
       );
     }
-    // e.target.setAttribute("disabled", true);
 
     let loadingToast = toast.loading("Updating...");
 
@@ -51,30 +44,12 @@ const ChangePassword = () => {
         true
       );
       toast.dismiss(loadingToast);
-      // e.target.removeAttribute("disabled");
       toast.success(data.message);
     } catch (error) {
       console.error("Failed to change the user password:", error);
-
       toast.dismiss(loadingToast);
-      // e.target.removeAttribute("disabled");
       return toast.error(error.message);
     }
-
-    // axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/change-password", formData, {
-    //     headers: { Authorization: `Bearer ${access_token}` },
-    //   })
-    //   .then(({ data }) => {
-    //     toast.dismiss(loadingToast);
-    //     e.target.removeAttribute("disabled");
-    //     toast.success(data.message);
-    //   })
-    //   .catch(({ response }) => {
-    //     toast.dismiss(loadingToast);
-    //     e.target.removeAttribute("disabled");
-    //     return toast.error(response.data.error);
-    //   });
   };
 
   return (

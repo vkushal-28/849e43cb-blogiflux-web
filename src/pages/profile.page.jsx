@@ -1,8 +1,6 @@
-import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AnimationWrapper from "../common/page-animation";
-import Loader from "../components/loader.component";
 import { UserContext } from "../App";
 import AboutUser from "../components/about.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";
@@ -32,15 +30,16 @@ export const profileDataStructure = {
 };
 
 const ProfilePage = () => {
+  // fetch url params
   const { id: profileId } = useParams();
 
-  console.log(profileId);
-
+  // state variables
   const [profile, setProfile] = useState(profileDataStructure);
   const [loading, setLoading] = useState(true);
   const [profileLoaded, setProfileLoaded] = useState("");
   const [blogs, setBlogs] = useState(null);
 
+  // destructure profile obj
   const {
     personal_info: { fullname, username: profile_username, profile_img, bio },
     account_info: { total_posts, total_reads },
@@ -48,6 +47,7 @@ const ProfilePage = () => {
     joinedAt,
   } = profile;
 
+  // context data
   let {
     userAuth: { username },
   } = useContext(UserContext);
@@ -66,21 +66,6 @@ const ProfilePage = () => {
       console.error("Failed to fetch user data:", error.response);
       setLoading(false);
     }
-
-    // await axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/get-profile", {
-    //     username: profileId,
-    //   })
-    //   .then(({ data: user }) => {
-    //     if (user !== null) setProfile(user);
-
-    //     setLoading(false);
-    //     setProfileLoaded(profileId);
-    //     fetchBlogs({ user_id: user._id });
-    //   })
-    //   .catch((err) => {
-    //     setLoading(false);
-    //   });
   };
 
   const fetchBlogs = async ({ page = 1, user_id }) => {
@@ -104,25 +89,6 @@ const ProfilePage = () => {
     } catch (error) {
       console.error("Failed to fetch userblogs:", error.response);
     }
-
-    // axios
-    //   .post(import.meta.env.VITE_SERVER_DOMAIN + "/search-blogs", {
-    //     author: user_id,
-    //     page,
-    //   })
-    //   .then(async ({ data }) => {
-    //     let formatedData = await filterPaginationdata({
-    //       state: blogs,
-    //       data: data.blogs,
-    //       page,
-    //       countRoute: "/search-blogs-count",
-    //       data_to_send: { author: user_id },
-    //     });
-
-    //     formatedData.user_id = user_id;
-    //     setBlogs(formatedData);
-    //   })
-    //   .catch((err) => {});
   };
 
   useEffect(() => {
