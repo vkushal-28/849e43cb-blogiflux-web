@@ -73,6 +73,7 @@ const NotificationCard = ({ data, index, notificationState }) => {
       <div className="flex gap-3 lg:gap-5 mb-3">
         <img
           src={profile_img}
+          alt="profile-image"
           className="w-10 h-10 lg:w-14 lg:h-14 flex-none rounded-full"
         />
         <div className="w-fill">
@@ -158,7 +159,7 @@ const NotificationCard = ({ data, index, notificationState }) => {
             <img
               src={author_profile_image}
               className="w-8 h-8 rounded-full"
-              alt=""
+              alt="author-profile-image"
             />
             <div>
               <h1 className="font-medium text-xl text-dark-grey">

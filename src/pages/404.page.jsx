@@ -14,7 +14,7 @@ const PageNotFound = () => {
     <section className="h-cover relative p-10 flex flex-col items-center gap-20 text-center">
       <img
         src={theme == "light" ? darkPageNotFoundImg : lightPageNotFoundImg}
-        alt=""
+        alt="page-not-found-image"
         className="select-none border-grey w-72 aspect-square object-cover rounded border-2"
       />
       <h1 className="text-4xl font-gelasio leading-7">Page not found</h1>
@@ -27,7 +27,7 @@ const PageNotFound = () => {
       <div className="mt-auto">
         <img
           src={theme == "light" ? darkFullLogo : lightFullLogo}
-          alt=""
+          alt="blogiflux-logo"
           className="h-12 object-contain block mt-auto select-none"
         />
         <p className="mt-5 text-dark-grey">

@@ -117,7 +117,7 @@ const ProfilePage = () => {
             <img
               src={profile_img}
               className="h-48 w-48 bg-grey rounded-full md:w-32 md:h-32"
-              alt="profile_image"
+              alt="profile-image"
             />
 
             <h1 className="text-2xl font-medium">@ {profile_username}</h1>

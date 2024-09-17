@@ -20,7 +20,11 @@ const MinimalBlogPostCard = ({ blog, index }) => {
       <div>
         <Link to={`/user/${username}`}>
           <div className="flex gap-2 items-center mb-7">
-            <img src={profile_img} className="h-6 w-6 rounded-full " />
+            <img
+              src={profile_img}
+              className="h-6 w-6 rounded-full"
+              alt="profile-image"
+            />
             <p className="line-clamp-1">
               {fullname} @{username}
             </p>

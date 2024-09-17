@@ -1,9 +1,9 @@
 import React from "react";
 
-const Img = ({ url, caption }) => {
+const Img = ({ url, caption, altText }) => {
   return (
     <div>
-      <img src={url} />
+      <img src={url} alt={altText || "image-preview"} />
       {caption.length ? (
         <p className="w-full text-center my-3 md:mb-12 text-base text-dark-grey">
           {caption}
@@ -64,7 +64,12 @@ const BlogContent = ({ block }) => {
   }
 
   if (type == "image") {
-    return <Img url={data.file.url} caption={data.caption}></Img>;
+    return (
+      <Img
+        url={data.file.url}
+        caption={data.caption}
+        altText={"content-image"}></Img>
+    );
   }
 
   if (type == "quote") {
@@ -74,8 +79,6 @@ const BlogContent = ({ block }) => {
   if (type == "list") {
     return <List style={data.style} items={data.items}></List>;
   }
-
-
 };
 
 export default BlogContent;

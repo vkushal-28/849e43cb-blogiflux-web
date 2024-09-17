@@ -140,14 +140,14 @@ const UserAuthForm = ({ type }) => {
           {/* <Button
             className="btn-dark flex items-center justify-center gap-4 w-[90%] center"
             onClick={handleGoogleAuth}>
-            <img src={googleIcon} alt="" className="w-5" />
+            <img src={googleIcon} alt="" className="w-5" alt="google-icon" />
             Continue with google
           </Button> */}
 
           <button
             className="btn-dark flex items-center justify-center gap-4 w-[90%] center"
             onClick={handleGoogleAuth}>
-            <img src={googleIcon} alt="" className="w-5" />
+            <img src={googleIcon} alt="google-icon" className="w-5" />
             Continue with google
           </button>
 

@@ -125,7 +125,7 @@ const BlogPage = () => {
                 <div className="flex gap-5 items-start">
                   <img
                     src={profile_img || null}
-                    alt=""
+                    alt="profile-image"
                     className="w-12 h-12 rounded-full"
                   />
                   <p>

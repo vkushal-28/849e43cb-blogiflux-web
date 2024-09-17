@@ -158,7 +158,10 @@ const BlogEditor = () => {
     <>
       <nav className="navbar">
         <Link to="/" className="flex-none w-10">
-          <img src={theme == "light" ? logoDark : logoLight} />
+          <img
+            src={theme == "light" ? logoDark : logoLight}
+            alt="blogiflux-logo"
+          />
         </Link>
         <p className="max-md:hidden text-black  line-clamp-1 w-full">
           {title || "New Blog"}
@@ -189,7 +192,12 @@ const BlogEditor = () => {
           <div className="mx-auto max-w-[900px] w-full">
             <div className="relative aspect-video hover:opacity-80 bg-white border-4 border-grey">
               <label htmlFor="uploadBanner">
-                <img src={banner} className="z-20" onError={handleError} />
+                <img
+                  src={banner}
+                  className="z-20"
+                  onError={handleError}
+                  alt="blog-banner"
+                />
                 <input
                   type="file"
                   id="uploadBanner"
