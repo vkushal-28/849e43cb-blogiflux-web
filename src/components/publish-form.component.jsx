@@ -63,9 +63,9 @@ const PublishForm = () => {
   };
 
   const onPublishBlog = (e) => {
-    if (e.target.className.includes("disable")) {
-      return;
-    }
+    // if (e.target.className.includes("disable")) {
+    //   return;
+    // }
 
     if (!title.length) {
       return toast.error("Write blog title before publish");
@@ -83,7 +83,7 @@ const PublishForm = () => {
 
     let loadingToast = toast.loading("Publishing...");
 
-    e.target.classList.add("disable");
+    // e.target.classList.add("disable");
 
     let blogObj = {
       title,
@@ -105,7 +105,7 @@ const PublishForm = () => {
         }
       )
       .then(() => {
-        e.target.classList.remove("disable");
+        // e.target.classList.remove("disable");
 
         toast.dismiss(loadingToast);
         toast.success("Published 👍🏼");
@@ -115,7 +115,7 @@ const PublishForm = () => {
         }, 500);
       })
       .catch(({ response }) => {
-        e.target.classList.remove("disable");
+        // e.target.classList.remove("disable");
         toast.dismiss(loadingToast);
         return toast.error(response.data.error);
       });
