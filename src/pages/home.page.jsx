@@ -18,6 +18,7 @@ const HomePage = () => {
   const [blogs, setBlogs] = useState(null);
   const [pageState, setPageState] = useState("home");
   const [trendingBlogs, setTrendingBlogs] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   let categories = [
     "programming",
@@ -31,9 +32,12 @@ const HomePage = () => {
   ];
 
   const fetchLatestBlogs = ({ page = 1 }) => {
+    setLoading(true);
     axios
       .post(import.meta.env.VITE_SERVER_DOMAIN + "/latest-blogs", { page })
       .then(async ({ data }) => {
+        setLoading(false);
+
         let formatedData = await filterPaginationdata({
           state: blogs,
           data: data.blogs,
@@ -44,7 +48,7 @@ const HomePage = () => {
         setBlogs(formatedData);
       })
       .catch((err) => {
-        console.log(err);
+        setLoading(false);
       });
   };
 
@@ -104,6 +108,20 @@ const HomePage = () => {
       fetchTrendingBlogs();
     }
   }, [pageState]);
+
+  useEffect(() => {
+    const modalSet = setTimeout(() => {
+      if (loading) {
+        alert(
+          "Please note: The API is hosted on a demo server. Due to idle time, the initial data load may take 25-30 seconds, but subsequent responses will be much faster. Thank you for your patience! 😊"
+        );
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(modalSet);
+    };
+  }, [loading]);
 
   return (
     <AnimationWrapper>
