@@ -12,24 +12,16 @@ import LoadMoreData from "../common/load-more.component";
 import {
   BlogListLoader,
   MinimalBlogListLoader,
+  TagsLoader,
 } from "../components/loaders/blog-loader.component";
 
 const HomePage = () => {
   const [blogs, setBlogs] = useState(null);
+  const [tags, setTags] = useState(null);
   const [pageState, setPageState] = useState("home");
   const [trendingBlogs, setTrendingBlogs] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  let categories = [
-    "programming",
-    "hollywood",
-    "film making",
-    "social media",
-    "cooking",
-    "technology",
-    "finances",
-    "travel",
-  ];
+  const [tagsLoading, setTagsLoading] = useState(false);
 
   const fetchLatestBlogs = ({ page = 1 }) => {
     setLoading(true);
@@ -52,6 +44,19 @@ const HomePage = () => {
       });
   };
 
+  const fetchAllTags = () => {
+    setTagsLoading(true);
+    axios
+      .get(import.meta.env.VITE_SERVER_DOMAIN + "/tags")
+      .then(async ({ data }) => {
+        setTagsLoading(false);
+        setTags(data.tags);
+      })
+      .catch((err) => {
+        setTagsLoading(false);
+      });
+  };
+
   const fetchTrendingBlogs = () => {
     axios
       .get(import.meta.env.VITE_SERVER_DOMAIN + "/trending-blogs")
@@ -63,8 +68,9 @@ const HomePage = () => {
       });
   };
 
-  const loadBlogByCategory = (e) => {
-    const category = e.target.innerText.toLowerCase();
+  const loadBlogByCategory = (e, tag) => {
+    console.log(tag.name);
+    const category = tag.name.toLowerCase();
     setBlogs(null);
 
     if (pageState == category) {
@@ -107,16 +113,18 @@ const HomePage = () => {
     if (!trendingBlogs) {
       fetchTrendingBlogs();
     }
+
+    if (!tags) fetchAllTags();
   }, [pageState]);
 
   useEffect(() => {
     const modalSet = setTimeout(() => {
       if (loading) {
         alert(
-          "Please note: The API is hosted on a demo server. Due to idle time, the initial data load may take 25-30 seconds, but subsequent responses will be much faster. Thank you for your patience! 😊"
+          "Please note: The API is hosted on a demo server. Due to idle time, the initial data load may take 30-40 seconds, but subsequent responses will be much faster. Thank you for your patience! 😊"
         );
       }
-    }, 1000);
+    }, 3000);
 
     return () => {
       clearTimeout(modalSet);
@@ -144,6 +152,7 @@ const HomePage = () => {
                       <BlogPostCard
                         content={blog}
                         author={blog.author.personal_info}
+                        isLastIndex={i === blogs.result.length - 1}
                       />
                     </AnimationWrapper>
                   );
@@ -168,7 +177,11 @@ const HomePage = () => {
                     <AnimationWrapper
                       transition={{ duration: 1, delay: i * 0.1 }}
                       key={i}>
-                      <MinimalBlogPostCard blog={blog} index={i} />
+                      <MinimalBlogPostCard
+                        blog={blog}
+                        index={i}
+                        isLast={i === trendingBlogs.length - 1}
+                      />
                     </AnimationWrapper>
                   );
                 })
@@ -185,7 +198,26 @@ const HomePage = () => {
           <div className="flex flex-col gap-5 mb-6">
             <h1 className="font-medium text-xl">Stories from all interests</h1>
             <div className="flex gap-3 flex-wrap">
-              {categories.map((category, i) => {
+              {tags == null ? (
+                <TagsLoader />
+              ) : tags.length ? (
+                tags.map((tag, i) => {
+                  return (
+                    <button
+                      className={`tag ${
+                        pageState == tag.name.toLowerCase() &&
+                        "bg-black text-white"
+                      } `}
+                      key={i}
+                      onClick={(e) => loadBlogByCategory(e, tag)}>
+                      {tag.name}
+                    </button>
+                  );
+                })
+              ) : (
+                <NoDataMessage message={"No trending blogs published"} />
+              )}
+              {/* {tags.map((category, i) => {
                 return (
                   <button
                     className={`tag ${
@@ -196,7 +228,7 @@ const HomePage = () => {
                     {category}
                   </button>
                 );
-              })}
+              })} */}
             </div>
           </div>
 
@@ -212,7 +244,11 @@ const HomePage = () => {
                   <AnimationWrapper
                     transition={{ duration: 1, delay: i * 0.1 }}
                     key={i}>
-                    <MinimalBlogPostCard blog={blog} index={i} />
+                    <MinimalBlogPostCard
+                      blog={blog}
+                      index={i}
+                      isLast={i === trendingBlogs.length - 1}
+                    />
                   </AnimationWrapper>
                 );
               })

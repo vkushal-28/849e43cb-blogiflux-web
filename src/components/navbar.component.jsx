@@ -70,7 +70,6 @@ const Navbar = () => {
     storeInSession("theme", newTheme);
   };
 
-  console.log(new_notification_available);
   return (
     <>
       <nav className="navbar z-50">
@@ -83,7 +82,7 @@ const Navbar = () => {
         </Link>
         <div
           className={
-            "absolute bg-white w-full left-0 top-full mt-0.5 border-b border-grey py-4 px-[5vw] md:border-0 md:block md:relative md:inset-0 md:p-0 md:w-auto md:show " +
+            "absolute  w-full left-0 top-full mt-0.5 border-b border-grey py-4 px-[5vw] md:border-0 md:block md:relative md:inset-0 md:p-0 md:w-auto md:show " +
             (openSearchBox ? "show" : "hide")
           }>
           <input
@@ -108,7 +107,9 @@ const Navbar = () => {
           </button> */}
 
           {/* {isAdmin && ( */}
-          <Link to="/editor" className="hidden md:flex gap-2 link">
+          <Link
+            to="/editor"
+            className="hidden md:flex gap-2  link rounded-full">
             <i className="fi fi-rr-file-edit"></i>
             <p>write</p>
           </Link>

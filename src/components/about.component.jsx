@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { getFullDay } from "../common/date";
 
 const AboutUser = ({ bio, social_links, joinedAt, className }) => {
-  
   return (
-    <div className={"md:w-[90%] md:mt-7  "}>
+    <div className={`md:w-[90%] md:mt-7 ${className} `}>
       <p className="text-xl leading-7">{bio || "Nothing to read here"}</p>
-      <div className="flex gap-x-7 gap-y-2 max-md:justify-center  justify-start flex-wrap my-7  text-dark-grey">
+      <div className="flex gap-x-7 gap-y-2 max-md:justify-center  justify-start flex-wrap my-1  text-dark-grey">
         {Object.keys(social_links).map((lnk, key) => {
           const link = social_links[lnk];
           return link ? (
@@ -24,7 +23,7 @@ const AboutUser = ({ bio, social_links, joinedAt, className }) => {
           );
         })}
       </div>
-      <p className="text-xl leading-7 text-dark-grey">
+      <p className="text-lg leading-7 text-dark-grey">
         Joined on {getFullDay(joinedAt)}
       </p>
     </div>

@@ -16,8 +16,8 @@ export const NotificationLoader = ({ type }) => {
 
   return (
     <SkeletonTheme
-      baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-      highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 5 }).map((e, i) => (
         <div
           className={`p-1 py-4 md:px-4 lg:px-6 border-b border-grey border-l-black`}>
@@ -80,8 +80,8 @@ export const NotificationCategoryLoader = () => {
 
   return (
     <SkeletonTheme
-      baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-      highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       <div className=" flex gap-2 lg:gap-6">
         {Array.apply(null, { length: 4 }).map((e, i) => (
           <Skeleton count={1} width={80} height={35} className="rounded-full" />

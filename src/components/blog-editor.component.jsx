@@ -157,7 +157,7 @@ const BlogEditor = () => {
   return (
     <>
       <nav className="navbar">
-        <Link to="/" className="flex-none w-10">
+        <Link to="/" className="flex-none w-14">
           <img
             src={theme == "light" ? logoDark : logoLight}
             alt="blogiflux-logo"
@@ -178,12 +178,6 @@ const BlogEditor = () => {
             onClick={(e) => handleSaveDraft(e)}>
             Save Draft
           </Button>
-          {/* <button className="btn-dark py-2" onClick={hadlePublishEvent}>
-            Publish
-          </button>
-          <button className="btn-light py-2" onClick={handleSaveDraft}>
-            Save Draft
-          </button> */}
         </div>
       </nav>
       <Toaster />

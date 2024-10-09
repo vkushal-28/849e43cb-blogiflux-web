@@ -34,8 +34,6 @@ const ChangePassword = () => {
       );
     }
 
-    let loadingToast = toast.loading("Updating...");
-
     try {
       const { data } = await apiRequest(
         "POST",
@@ -43,12 +41,10 @@ const ChangePassword = () => {
         formData,
         true
       );
-      toast.dismiss(loadingToast);
       toast.success(data.message);
     } catch (error) {
       console.error("Failed to change the user password:", error);
-      toast.dismiss(loadingToast);
-      return toast.error(error.message);
+      return toast.error(error.response.data.error);
     }
   };
 

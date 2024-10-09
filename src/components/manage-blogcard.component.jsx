@@ -17,12 +17,10 @@ const BlogStats = ({ stats }) => {
                 i !== 0 && "border-grey border-l "
               }`}
               key={i}>
-              <h1 className="text-xl lg:text-2xl">
+              <h1 className="text-xl lg:text-2xl ">
                 {stats[key].toLocaleString()}
               </h1>
-              <p className="max-lg:text-dark-grey capitalize">
-                {key.split("_")[1]}
-              </p>
+              <p className="text-dark-grey capitalize ">{key.split("_")[1]}</p>
             </div>
           )
         );
@@ -57,19 +55,21 @@ export const ManageBlogCard = ({ blog }) => {
           <div>
             <Link
               to={`/blog/${blog_id}`}
-              className="blog-title mb-4 hover:underline">
+              className="blog-title mb-2 hover:underline">
               {title}
             </Link>
-            <p className="line-clamp-1">Published on {getDay(publishedAt)}</p>
+            <p className="line-clamp-1 text-dark-grey">
+              Published on {getDay(publishedAt)}
+            </p>
           </div>
 
-          <div className="flex gap-6 mt-3">
-            <Link to={`/editor/${blog_id}`} className="pr-4 py-2 underline">
+          <div className="flex gap-6 mt-8">
+            <Link to={`/editor/${blog_id}`} className="pr-4 ">
               Edit
             </Link>
 
             <Button
-              className="lg:hidden pr-4 py-2 underline "
+              className="lg:hidden pr-4 underline "
               onClick={() => {
                 setShowStats((preVal) => !preVal);
               }}>
@@ -84,7 +84,7 @@ export const ManageBlogCard = ({ blog }) => {
             </button> */}
 
             <Button
-              className="pr-4 py-2 underline text-red"
+              className="pr-4  text-red"
               onClick={(e) => deleteBlog(blog, access_token)}>
               Delete
             </Button>
@@ -120,26 +120,26 @@ export const ManageDraftCard = ({ blog }) => {
   return (
     <>
       <div
-        className="flex gap-10 border-b mb-3 md:mb-6 max-md:px-4 border-grey pb-3 md:pb-6 items-center"
+        className="flex max-md:gap-5 gap-10 border-b mb-3 md:mb-6 max-md:px-4 border-grey pb-3 md:pb-6 max-md:items-start items-center"
         key={index}>
-        <h1 className="blog-index text-center pl-0  md:pl-6 flex-none">
+        <h1 className="blog-index text-center pl-0  md:pl-2 flex-none ">
           {index < 10 ? "0" + index : index}
         </h1>
 
         <div>
-          <h1 className="blog-title mb-3">{title}</h1>
+          <h1 className="blog-title mb-2">{title}</h1>
 
-          <p className="line-clamp-2 font-gelasio">
+          <p className="line-clamp-2 font-gelasio text-dark-grey">
             {description || "No Description"}
           </p>
 
-          <div className="flex gap-6 mt-3">
-            <Link to={`/editor/${blog_id}`} className="pr-4 py-2 underline">
+          <div className="flex gap-6 max-md:mt-1 mt-2">
+            <Link to={`/editor/${blog_id}`} className="pr-4 py-2 ">
               Edit
             </Link>
 
             <Button
-              className="pr-4 py-2 underline text-red"
+              className="pr-4 py-2  text-red"
               onClick={(e) => deleteBlog(blog, access_token)}>
               Delete
             </Button>

@@ -20,7 +20,7 @@ const InputBox = ({
         placeholder={placeholder}
         defaultValue={value}
         id={id}
-        className="input-box"
+        className="input-box rounded-lg"
       />
       <i className={"fi " + icon + " input-icon"} />
 

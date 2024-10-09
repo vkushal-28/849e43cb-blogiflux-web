@@ -16,8 +16,8 @@ const Image = ({ src, alt, type, className }) => {
     <>
       {!loaded && (
         <SkeletonTheme
-          baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-          highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+          baseColor={`${theme == "dark" ? "#212830" : "#F3F3F3"}`}
+          highlightColor={`${theme == "dark" ? "#1b2026" : "#e6e6e6"}`}>
           <Skeleton className={`${className}`} count={1} />
         </SkeletonTheme>
       )}

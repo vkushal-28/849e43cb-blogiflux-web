@@ -89,7 +89,7 @@ const ManageBlogs = () => {
   return (
     <>
       <h1 className="max-md:hidden text-xl mt-1">Manage Blogs</h1>
-      <div className="w-full relative max-md:mt-5 md:mt-8 mb-10">
+      <div className="w-full relative max-md:mt-3 md:mt-8 max-md:mb-1 mb-5">
         <input
           type="search"
           className="w-full bg-grey p-4 pl-12 pr-6 rounded-full placeholder:text-dark-grey"

@@ -16,27 +16,27 @@ export const BlogListLoader = () => {
 
   return (
     <SkeletonTheme
-      baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-      highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 5 }).map((e, i) => (
         <div
-          className="flex gap-8 items-center border-b border-grey pb-7 mb-6"
+          className="flex gap-8 items-start border-b border-grey pb-6 mb-5"
           key={i}>
           <div className="w-full">
-            <div className="flex gap-2 items-center mb-4">
+            <div className="flex gap-2 items-start mb-2">
               <Skeleton
                 count={1}
                 height={22}
                 width={22}
                 className="rounded-full"
               />
-              <p>
+              <p className="mt-1">
                 <Skeleton count={1} height={13} width={150} />
               </p>
             </div>
 
             <h1 className="blog-title ">
-              <Skeleton count={1} width={"70%"} height={25} />
+              <Skeleton count={1} width={"70%"} height={20} />
             </h1>
 
             <p className="my-3   max-sm:hidden md:max-[1100px]:hidden ">
@@ -44,7 +44,7 @@ export const BlogListLoader = () => {
               <Skeleton count={1} width={"80%"} height={12} />
             </p>
 
-            <div className="flex gap-4 mt-8">
+            <div className="flex gap-4 mt-5">
               <Skeleton
                 count={1}
                 width={80}
@@ -81,16 +81,16 @@ export const MinimalBlogListLoader = () => {
 
   return (
     <SkeletonTheme
-      baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-      highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 7 }).map((e, i) => (
-        <div className="flex gap-5 items-start mb-7">
+        <div className="flex gap-5 items-start mb-7" key={i}>
           <h1 className="">
             <Skeleton count={1} height={40} width={40} />
           </h1>
 
           <div className="w-full">
-            <div className="flex gap-2 items-center mb-7">
+            <div className="flex gap-2 items-center mb-2">
               <Skeleton
                 count={1}
                 height={25}
@@ -125,13 +125,14 @@ export const PublishedBlogLoader = ({ draft = false }) => {
 
   return (
     <SkeletonTheme
-      baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-      highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 5 }).map((e, i) => (
         <div
           className={`w-full flex gap-10  ${
             width <= 1024 && "gap-0"
-          } border-b mb-6 max-md:px-4 border-grey pb-6 items-center`}>
+          } border-b mb-6 max-md:px-4 border-grey pb-6 items-center`}
+          key={i}>
           {draft ? (
             <Skeleton
               count={1}
@@ -201,8 +202,8 @@ export const DraftBlogLoader = ({ draft = false }) => {
 
   return (
     <SkeletonTheme
-      baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-      highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 5 }).map((e, index) => (
         <div
           className="flex gap-10 border-b mb-6 max-md:px-4 border-grey pb-6 items-center"
@@ -226,6 +227,28 @@ export const DraftBlogLoader = ({ draft = false }) => {
             </div>
           </div>
         </div>
+      ))}
+    </SkeletonTheme>
+  );
+};
+
+export const TagsLoader = ({ draft = false }) => {
+  const { theme } = useContext(ThemeContext);
+
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      setWidth(window.innerWidth);
+    });
+  }, [width]);
+
+  return (
+    <SkeletonTheme
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
+      {Array.apply(null, { length: 6 }).map((e, i) => (
+        <div className={`tag h-12 w-32`} key={i}></div>
       ))}
     </SkeletonTheme>
   );

@@ -16,10 +16,12 @@ export const ProfileDetailsLoader = () => {
 
   return (
     <SkeletonTheme
-      baseColor={`${theme == "dark" ? "#303030" : "#F3F3F3"}`}
-      highlightColor={`${theme == "dark" ? "#2A2A2A" : "#e6e6e6"}`}>
+      baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
+      highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 5 }).map((e, i) => (
-        <section className="h-cover md:flex flex-row-reverse items-start gap-5 min-[1100px]:gap-12">
+        <section
+          className="h-cover md:flex flex-row-reverse items-start max-md:gap-2 gap-3 min-[1100px]:gap-12"
+          key={i}>
           <div className="flex flex-col max-md:items-center gap-2 min-w-[250px]">
             <Skeleton
               count={1}
