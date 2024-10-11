@@ -108,7 +108,7 @@ const NotificationCard = ({ data, index, notificationState }) => {
       </div>
 
       {type !== "like" && (
-        <p className="ml-14 pl-5 font-gelasio text-xl my-5">
+        <p className="ml-14 pl-5 font-gelasio text-xl my-3  ">
           {comment?.comment}
         </p>
       )}
@@ -154,7 +154,7 @@ const NotificationCard = ({ data, index, notificationState }) => {
       )}
 
       {reply && (
-        <div className="ml-20 p-5 bg-grey mt-5 rounded-md w-fit lg:w-full">
+        <div className="ml-20 p-4 bg-grey mt-5 rounded-md w-fit lg:w-full">
           <div className="flex gap-3 mb-3">
             <img
               src={author_profile_image}

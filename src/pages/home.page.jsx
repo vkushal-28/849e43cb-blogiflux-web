@@ -13,7 +13,7 @@ import {
   BlogListLoader,
   MinimalBlogListLoader,
   TagsLoader,
-} from "../components/loaders/blog-loader.component";
+} from "../components/loaderComponents/blog-loader.component";
 
 const HomePage = () => {
   const [blogs, setBlogs] = useState(null);
@@ -133,7 +133,7 @@ const HomePage = () => {
 
   return (
     <AnimationWrapper>
-      <section className="h-cover flex justify-center gap-10 ">
+      <section className="h-cover flex justify-center gap-10 max-md:py-1 py-3 ">
         {/* Latest blogs component */}
 
         <div className="w-full">

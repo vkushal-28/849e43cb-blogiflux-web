@@ -7,7 +7,7 @@ import LoadMoreData from "../common/load-more.component";
 import {
   NotificationCategoryLoader,
   NotificationLoader,
-} from "../components/loaders/dashboard-loader.component";
+} from "../components/loaderComponents/dashboard-loader.component";
 import apiRequest from "../common/api/apiRequest";
 import { getNotificationsApi } from "../common/api";
 
@@ -75,7 +75,7 @@ const Notifications = () => {
   return (
     <>
       <h1 className="max-md:hidden">Recent Notifications</h1>
-      <div className="w-full my-5 lg:my-8 flex gap-2 lg:gap-6">
+      <div className="w-full max-md:my-3 my-5 lg:mt-7 flex gap-2 lg:gap-6">
         {notifications === null ? (
           <NotificationCategoryLoader />
         ) : (

@@ -11,8 +11,8 @@ import BlogPostCard from "../components/blog-post.component";
 import PageNotFound from "./404.page";
 import { getProfileDetailsApi, getSearchedBlogsApi } from "../common/api";
 import apiRequest from "../common/api/apiRequest";
-import { BlogListLoader } from "../components/loaders/blog-loader.component";
-import { ProfileDetailsLoader } from "../components/loaders/profile-loader-component";
+import { BlogListLoader } from "../components/loaderComponents/blog-loader.component";
+import { ProfileDetailsLoader } from "../components/loaderComponents/profile-loader-component";
 
 export const profileDataStructure = {
   personal_info: {

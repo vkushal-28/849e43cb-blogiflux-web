@@ -178,8 +178,10 @@ const EditProfile = () => {
         <Loader />
       ) : (
         <form ref={editProfileForm}>
-          <h1 className="max-md:hidden">Edit Profile</h1>
-          <div className="flex flex-col lg:flex-row items-start py-10 gap-8 lg:gap-10">
+          <h1 className="max-md:hidden max-lg:text-center font-bold mt-1">
+            Edit Profile
+          </h1>
+          <div className="flex flex-col lg:flex-row items-start max-lg:py-4 py-10 gap-3  lg:gap-10">
             <div className="max-lg:center mb-5">
               <label
                 htmlFor="uploadImg"
@@ -254,7 +256,7 @@ const EditProfile = () => {
                 {charactersLeft} Characters Left{" "}
               </p>
 
-              <p className="my-6 text-dark-grey">
+              <p className="mt-6 mb-3 text-dark-grey">
                 Add your social handles below
               </p>
 
@@ -281,7 +283,7 @@ const EditProfile = () => {
               </div>
 
               <Button
-                className="btn-dark w-auto px-10"
+                className="btn-dark w-auto px-10 max-md:w-full max-md:mt-3"
                 onClick={(e) => handleSubmit(e)}
                 loadingText="Updating...">
                 Update

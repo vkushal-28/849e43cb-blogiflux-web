@@ -42,7 +42,7 @@ export const ManageBlogCard = ({ blog }) => {
   return (
     <>
       <div
-        className="flex gap-0 md:gap-10 border-b mb-3 md:mb-6 max-md:px-4 border-grey pb-3 md:pb-6 items-center"
+        className="flex gap-0 md:gap-10 border-b  md:mb-3  border-grey pb-5 md:pb-4 items-center"
         keu={index}>
         <Image
           src={banner}
@@ -51,7 +51,10 @@ export const ManageBlogCard = ({ blog }) => {
           alt=""
         />
 
-        <div className="flex flex-col justify-between py-2  w-full min-w-[300px] ">
+        <div
+          className={`flex flex-col justify-between ${
+            index !== 1 ? "max-md:mt-4" : "max-md:mt-0"
+          }  w-full min-w-[300px] `}>
           <div>
             <Link
               to={`/blog/${blog_id}`}
@@ -63,7 +66,7 @@ export const ManageBlogCard = ({ blog }) => {
             </p>
           </div>
 
-          <div className="flex gap-6 mt-8">
+          <div className="flex gap-6 mt-6 max-md:mt-4">
             <Link to={`/editor/${blog_id}`} className="pr-4 ">
               Edit
             </Link>
@@ -120,20 +123,20 @@ export const ManageDraftCard = ({ blog }) => {
   return (
     <>
       <div
-        className="flex max-md:gap-5 gap-10 border-b mb-3 md:mb-6 max-md:px-4 border-grey pb-3 md:pb-6 max-md:items-start items-center"
+        className="flex max-md:gap-5 gap-10 border-b mb-2 md:mb-6 max-md:px-0 border-grey pb-2 md:pb-6 max-md:items-start items-center"
         key={index}>
         <h1 className="blog-index text-center pl-0  md:pl-2 flex-none ">
           {index < 10 ? "0" + index : index}
         </h1>
 
         <div>
-          <h1 className="blog-title mb-2">{title}</h1>
+          <h1 className="blog-title  mb-2">{title}</h1>
 
           <p className="line-clamp-2 font-gelasio text-dark-grey">
             {description || "No Description"}
           </p>
 
-          <div className="flex gap-6 max-md:mt-1 mt-2">
+          <div className="flex gap-6 max-md:mt-1 mt-3">
             <Link to={`/editor/${blog_id}`} className="pr-4 py-2 ">
               Edit
             </Link>

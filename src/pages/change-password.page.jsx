@@ -51,7 +51,9 @@ const ChangePassword = () => {
   return (
     <AnimationWrapper>
       <form ref={changePwdForm}>
-        <h1>ChangePassword</h1>
+        <h1 className="max-md:hidden max-lg:text-center font-bold mt-1">
+          Change Password
+        </h1>
         <div className="py-10 w-full md:max-w-[400px]">
           <InputBox
             className="profile-edit-input"
@@ -67,7 +69,9 @@ const ChangePassword = () => {
             placeholder="New Password"
             icon={"fi fi-rr-unlock"}></InputBox>
 
-          <Button className="btn-dark px-10" onClick={(e) => handleSubmit(e)}>
+          <Button
+            className="btn-dark px-10 max-md:w-full"
+            onClick={(e) => handleSubmit(e)}>
             Change Password
           </Button>
         </div>

@@ -60,6 +60,7 @@ const Navbar = () => {
 
     if (e.keyCode == 13 && query.length) {
       navigate(`/search/${query}`);
+      setOpenSearchBox((currentVal) => !currentVal);
     }
   };
 
@@ -72,7 +73,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar z-50">
+      <nav className="navbar z-50 max-lg:h-[5rem]">
         <Link to="/" className="flex-none w-14">
           <img
             src={theme == "light" ? darkLogo : lightLogo}
@@ -82,7 +83,7 @@ const Navbar = () => {
         </Link>
         <div
           className={
-            "absolute  w-full left-0 top-full mt-0.5 border-b border-grey py-4 px-[5vw] md:border-0 md:block md:relative md:inset-0 md:p-0 md:w-auto md:show " +
+            "absolute  w-full left-0 bg-white top-full mt-0.5 border-b border-grey py-4 px-[5vw] md:border-0 md:block md:relative md:inset-0 md:p-0 md:w-auto md:show " +
             (openSearchBox ? "show" : "hide")
           }>
           <input
@@ -99,12 +100,6 @@ const Navbar = () => {
             onClick={() => setOpenSearchBox((currentVal) => !currentVal)}>
             <i className="fi fi-rr-search text-xl"></i>
           </Button>
-
-          {/* <button
-            className="md:hidden bg-grey w-12 h-12 rounded-full flex items-center justify-center"
-            onClick={() => setOpenSearchBox((currentVal) => !currentVal)}>
-            <i className="fi fi-rr-search text-xl"></i>
-          </button> */}
 
           {/* {isAdmin && ( */}
           <Link
@@ -124,25 +119,10 @@ const Navbar = () => {
               } text-2xl block mt-1 `}
             />
           </Button>
-          {/* <button
-            className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10"
-            onClick={changeTheme}>
-            <i
-              className={`fi fi-rr-${
-                theme == "light" ? "moon-stars" : "sun"
-              } text-2xl block mt-1 `}
-            />
-          </button> */}
 
           {access_token ? (
             <>
               <Link to="/dashboard/notifications">
-                {/* <Button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
-                  <i className="fi fi-rr-bell text-xl block mt-1 " />
-                  {new_notification_available && (
-                    <span className="bg-red w-3 h-3 rounded-full absolute z-10 top-2 right-2"></span>
-                  )}
-                </Button> */}
                 <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
                   <i className="fi fi-rr-bell text-xl block mt-1 " />
                   {new_notification_available && (
@@ -162,13 +142,6 @@ const Navbar = () => {
                     alt="profile-image"
                   />
                 </Button>
-                {/* <button className="w-12 h-12 mt-1">
-                  <img
-                    src={profile_img}
-                    className="w-full h-full object-cover rounded-full"
-                    alt=""
-                  />
-                </button> */}
               </div>
 
               {userNavPanel && <UserNavigation />}

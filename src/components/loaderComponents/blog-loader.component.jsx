@@ -36,7 +36,14 @@ export const BlogListLoader = () => {
             </div>
 
             <h1 className="blog-title ">
-              <Skeleton count={1} width={"70%"} height={20} />
+              <Skeleton
+                count={1}
+                width={`${width > 1025 ? "80%" : "100%"}`}
+                height={20}
+              />
+              {width <= 1024 && (
+                <Skeleton count={1} width={"80%"} height={20} />
+              )}
             </h1>
 
             <p className="my-3   max-sm:hidden md:max-[1100px]:hidden ">
