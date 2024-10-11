@@ -65,9 +65,6 @@ const NotificationCommentField = ({
       <Button className="btn-dark mt-5 px-10" onClick={(e) => handleComment(e)}>
         Reply
       </Button>
-      {/* <button className="btn-dark mt-5 px-10" onClick={handleComment}>
-        Reply
-      </button> */}
     </>
   );
 };

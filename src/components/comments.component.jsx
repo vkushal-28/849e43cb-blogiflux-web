@@ -82,11 +82,6 @@ const CommentsContainer = () => {
           onClick={() => setCommentsWrapper((prevVal) => !prevVal)}>
           <i className="fi fi-br-cross text-lg mt-1"></i>
         </Button>
-        {/* <button
-          className="absolute top-0 right-0 flex justify-center items-center w-12 h-12 rounded-full bg-grey"
-          onClick={() => setCommentsWrapper((prevVal) => !prevVal)}>
-          <i className="fi fi-br-cross text-2xl mt-1"></i>
-        </button> */}
       </div>
       <hr className="border-grey my-8 w-[120%] -ml-10" />
       <CommentField action={"Comment"} />

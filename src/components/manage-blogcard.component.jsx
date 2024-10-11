@@ -72,30 +72,18 @@ export const ManageBlogCard = ({ blog }) => {
             </Link>
 
             <Button
-              className="lg:hidden pr-4 underline "
+              className="lg:hidden pr-4"
               onClick={() => {
                 setShowStats((preVal) => !preVal);
               }}>
               Status
             </Button>
-            {/* <button
-              className="lg:hidden pr-4 py-2 underline "
-              onClick={() => {
-                setShowStats((preVal) => !preVal);
-              }}>
-              Status
-            </button> */}
 
             <Button
               className="pr-4  text-red"
               onClick={(e) => deleteBlog(blog, access_token)}>
               Delete
             </Button>
-            {/* <button
-              className="pr-4 py-2 underline text-red"
-              onClick={(e) => deleteBlog(blog, access_token, e.target)}>
-              Delete
-            </button> */}
           </div>
         </div>
 
@@ -146,12 +134,6 @@ export const ManageDraftCard = ({ blog }) => {
               onClick={(e) => deleteBlog(blog, access_token)}>
               Delete
             </Button>
-
-            {/* <button
-              className="pr-4 py-2 underline text-red"
-              onClick={(e) => deleteBlog(blog, access_token)}>
-              Delete
-            </button> */}
           </div>
         </div>
       </div>

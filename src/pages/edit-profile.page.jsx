@@ -80,7 +80,6 @@ const EditProfile = () => {
       await uploadImage(updatedProfileImg)
         .then(async (url) => {
           if (url) {
-            console.log(url);
             try {
               const { data } = await apiRequest(
                 "POST",

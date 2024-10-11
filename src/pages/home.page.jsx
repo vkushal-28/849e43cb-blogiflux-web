@@ -69,7 +69,6 @@ const HomePage = () => {
   };
 
   const loadBlogByCategory = (e, tag) => {
-    console.log(tag.name);
     const category = tag.name.toLowerCase();
     setBlogs(null);
 
@@ -215,20 +214,8 @@ const HomePage = () => {
                   );
                 })
               ) : (
-                <NoDataMessage message={"No trending blogs published"} />
+                <NoDataMessage message={"No tags found"} />
               )}
-              {/* {tags.map((category, i) => {
-                return (
-                  <button
-                    className={`tag ${
-                      pageState == category && "bg-black text-white"
-                    } `}
-                    key={i}
-                    onClick={loadBlogByCategory}>
-                    {category}
-                  </button>
-                );
-              })} */}
             </div>
           </div>
 

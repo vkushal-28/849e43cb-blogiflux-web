@@ -31,7 +31,6 @@ const BlogInteraction = () => {
 
   useEffect(() => {
     if (access_token) {
-
       axios
         .post(
           import.meta.env.VITE_SERVER_DOMAIN + "/isLiked-by-user",
@@ -73,9 +72,7 @@ const BlogInteraction = () => {
             },
           }
         )
-        .then(({ data }) => {
-
-        })
+        .then(({ data }) => {})
         .catch((err) => {
           console.log(err);
         });
@@ -102,29 +99,14 @@ const BlogInteraction = () => {
               }
             />
           </Button>
-          {/* <button
-            className={
-              "w-10 h-10 rounded-full flex items-center justify-center " +
-              (isLikedByUser ? "bg-red/20 text-red" : " bg-grey/80")
-            }
-            onClick={handleLike}>
-            <i
-              className={
-                "fi " + (isLikedByUser ? "fi-sr-heart" : "fi-rr-heart")
-              }
-            />
-          </button> */}
+
           <p className="text-xl text-dark-grey">{total_likes || 0}</p>
           <Button
             className="w-10 h-10 rounded-full flex items-center justify-center bg-grey/80"
             onClick={() => setCommentsWrapper((preVal) => !preVal)}>
             <i className="fi fi-rr-comment-dots" />
           </Button>
-          {/* <button
-            className="w-10 h-10 rounded-full flex items-center justify-center bg-grey/80"
-            onClick={() => setCommentsWrapper((preVal) => !preVal)}>
-            <i className="fi fi-rr-comment-dots" />
-          </button> */}
+
           <p className="text-xl text-dark-grey">{total_comments}</p>
         </div>
 

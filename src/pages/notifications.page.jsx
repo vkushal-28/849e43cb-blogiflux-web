@@ -62,7 +62,6 @@ const Notifications = () => {
     if (access_token) {
       fetchNotifications({ page: 1 });
     }
-    console.log(filter);
   }, [access_token, filter]);
 
   const handleFilter = (e) => {

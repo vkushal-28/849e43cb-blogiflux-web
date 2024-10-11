@@ -107,9 +107,6 @@ const CommentField = ({
       <Button className="btn-dark mt-5 px-10" onClick={(e) => handleComment(e)}>
         {action}
       </Button>
-      {/* <button className="btn-dark mt-5 px-10" onClick={handleComment}>
-        {action}
-      </button> */}
     </>
   );
 };
