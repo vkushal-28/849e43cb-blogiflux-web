@@ -6,7 +6,7 @@ import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import Button from "../common/button.component";
 
-const BlogInteraction = () => {
+const BlogInteraction = React.memo(() => {
   let {
     blog,
     blog: {
@@ -129,6 +129,6 @@ const BlogInteraction = () => {
       <hr className="border-grey my-2" />
     </>
   );
-};
+});
 
 export default BlogInteraction;

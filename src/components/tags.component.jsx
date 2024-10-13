@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { EditorContext } from "../pages/editor.pages";
 import Button from "../common/button.component";
 
-const Tag = ({ tag, tagIndex }) => {
+const Tag = React.memo(({ tag, tagIndex }) => {
   let {
     blog,
     blog: { tags },
@@ -47,6 +47,6 @@ const Tag = ({ tag, tagIndex }) => {
       </Button>
     </div>
   );
-};
+});
 
 export default Tag;

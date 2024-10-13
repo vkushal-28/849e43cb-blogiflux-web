@@ -14,7 +14,7 @@ import axios from "axios";
 import { ThemeContext, UserContext } from "../App";
 import Button from "../common/button.component";
 
-const BlogEditor = () => {
+const BlogEditor = React.memo(() => {
   const navigate = useNavigate();
   const { blog_id } = useParams();
 
@@ -215,6 +215,6 @@ const BlogEditor = () => {
       </AnimationWrapper>
     </>
   );
-};
+});
 
 export default BlogEditor;

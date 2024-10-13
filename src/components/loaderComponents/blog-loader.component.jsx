@@ -75,7 +75,7 @@ export const BlogListLoader = () => {
   );
 };
 
-export const MinimalBlogListLoader = () => {
+export const MinimalBlogListLoader = React.memo(() => {
   const { theme } = useContext(ThemeContext);
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -117,7 +117,7 @@ export const MinimalBlogListLoader = () => {
       ))}
     </SkeletonTheme>
   );
-};
+});
 
 export const PublishedBlogLoader = ({ draft = false }) => {
   const { theme } = useContext(ThemeContext);
@@ -196,7 +196,7 @@ export const PublishedBlogLoader = ({ draft = false }) => {
   );
 };
 
-export const DraftBlogLoader = ({ draft = false }) => {
+export const DraftBlogLoader = () => {
   const { theme } = useContext(ThemeContext);
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -239,7 +239,7 @@ export const DraftBlogLoader = ({ draft = false }) => {
   );
 };
 
-export const TagsLoader = ({ draft = false }) => {
+export const TagsLoader = () => {
   const { theme } = useContext(ThemeContext);
 
   const [width, setWidth] = useState(window.innerWidth);
@@ -255,7 +255,7 @@ export const TagsLoader = ({ draft = false }) => {
       baseColor={`${theme == "dark" ? "#212830" : "#eceeef"}`}
       highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 6 }).map((e, i) => (
-        <div className={`tag h-12 w-32`} key={i}></div>
+        <Skeleton className={`tag h-12 w-32`} key={i}></Skeleton>
       ))}
     </SkeletonTheme>
   );

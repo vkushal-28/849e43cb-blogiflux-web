@@ -3,7 +3,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { ThemeContext } from "../App";
 
-const Image = ({ src, alt, type, className }) => {
+const Image = React.memo(({ src, alt, type, className }) => {
   const [loaded, setLoaded] = useState(false);
 
   const { theme } = useContext(ThemeContext);
@@ -32,6 +32,6 @@ const Image = ({ src, alt, type, className }) => {
       />
     </>
   );
-};
+});
 
 export default Image;

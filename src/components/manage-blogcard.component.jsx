@@ -6,7 +6,7 @@ import axios from "axios";
 import Image from "./lazy-image-component";
 import Button from "../common/button.component";
 
-const BlogStats = ({ stats }) => {
+const BlogStats = React.memo(({ stats }) => {
   return (
     <div className="flex gap-2 max-lg:mb-6 border-grey max-lg:border-b">
       {Object.keys(stats).map((key, i) => {
@@ -27,9 +27,9 @@ const BlogStats = ({ stats }) => {
       })}
     </div>
   );
-};
+});
 
-export const ManageBlogCard = ({ blog }) => {
+export const ManageBlogCard = React.memo(({ blog }) => {
   let { banner, blog_id, title, publishedAt, activity, index } = blog;
 
   index++;
@@ -98,9 +98,9 @@ export const ManageBlogCard = ({ blog }) => {
       )}
     </>
   );
-};
+});
 
-export const ManageDraftCard = ({ blog }) => {
+export const ManageDraftCard = React.memo(({ blog }) => {
   let { blog_id, description, title, publishedAt, index } = blog;
 
   let {
@@ -139,7 +139,7 @@ export const ManageDraftCard = ({ blog }) => {
       </div>
     </>
   );
-};
+});
 
 const deleteBlog = (blog, access_token, target) => {
   let { index, blog_id, setStateFunc } = blog;

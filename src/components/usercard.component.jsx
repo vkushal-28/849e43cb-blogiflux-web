@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UserCard = ({ user }) => {
+const UserCard = React.memo(({ user }) => {
   let {
     personal_info: { fullname, username, profile_img },
   } = user;
@@ -19,6 +19,6 @@ const UserCard = ({ user }) => {
       </div>
     </Link>
   );
-};
+});
 
 export default UserCard;

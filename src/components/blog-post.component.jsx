@@ -3,7 +3,7 @@ import { getDay } from "../common/date";
 import { Link } from "react-router-dom";
 import Image from "./lazy-image-component";
 
-const BlogPostCard = ({ content, author, isLastIndex }) => {
+const BlogPostCard = React.memo(({ content, author, isLastIndex }) => {
   const {
     title,
     banner,
@@ -65,6 +65,6 @@ const BlogPostCard = ({ content, author, isLastIndex }) => {
       </div>
     </>
   );
-};
+});
 
 export default BlogPostCard;

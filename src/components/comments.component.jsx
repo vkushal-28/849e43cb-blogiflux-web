@@ -36,7 +36,7 @@ export const fetchComments = async ({
   return res;
 };
 
-const CommentsContainer = () => {
+const CommentsContainer = React.memo(() => {
   let {
     blog,
     blog: {
@@ -109,6 +109,6 @@ const CommentsContainer = () => {
       )}
     </div>
   );
-};
+});
 
 export default CommentsContainer;

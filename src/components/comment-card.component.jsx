@@ -7,7 +7,7 @@ import { BlogContext } from "../pages/blog.page";
 import axios from "axios";
 import Button from "../common/button.component";
 
-const CommentCard = ({ index, leftVal, commentData }) => {
+const CommentCard = React.memo(({ index, leftVal, commentData }) => {
   let {
     commented_by: {
       personal_info: { fullname, username: commented_by_username, profile_img },
@@ -206,6 +206,6 @@ const CommentCard = ({ index, leftVal, commentData }) => {
       </div>
     </div>
   );
-};
+});
 
 export default CommentCard;

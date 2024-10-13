@@ -6,7 +6,7 @@ import { UserContext } from "../App";
 import axios from "axios";
 import Button from "../common/button.component";
 
-const NotificationCard = ({ data, index, notificationState }) => {
+const NotificationCard = React.memo(({ data, index, notificationState }) => {
   const [isReplying, setIsReplying] = useState(false);
 
   let {
@@ -190,6 +190,6 @@ const NotificationCard = ({ data, index, notificationState }) => {
       )}
     </div>
   );
-};
+});
 
 export default NotificationCard;

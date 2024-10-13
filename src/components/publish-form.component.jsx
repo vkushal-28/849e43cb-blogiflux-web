@@ -8,7 +8,7 @@ import { UserContext } from "../App";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../common/button.component";
 
-const PublishForm = () => {
+const PublishForm = React.memo(() => {
   const characterLimit = 250;
   const tagLimit = 10;
 
@@ -63,10 +63,6 @@ const PublishForm = () => {
   };
 
   const onPublishBlog = (e) => {
-    // if (e.target.className.includes("disable")) {
-    //   return;
-    // }
-
     if (!title.length) {
       return toast.error("Write blog title before publish");
     }
@@ -82,8 +78,6 @@ const PublishForm = () => {
     }
 
     let loadingToast = toast.loading("Publishing...");
-
-    // e.target.classList.add("disable");
 
     let blogObj = {
       title,
@@ -105,8 +99,6 @@ const PublishForm = () => {
         }
       )
       .then(() => {
-        // e.target.classList.remove("disable");
-
         toast.dismiss(loadingToast);
         toast.success("Published 👍🏼");
 
@@ -115,7 +107,6 @@ const PublishForm = () => {
         }, 500);
       })
       .catch(({ response }) => {
-        // e.target.classList.remove("disable");
         toast.dismiss(loadingToast);
         return toast.error(response.data.error);
       });
@@ -194,6 +185,6 @@ const PublishForm = () => {
       </section>
     </AnimationWrapper>
   );
-};
+});
 
 export default PublishForm;

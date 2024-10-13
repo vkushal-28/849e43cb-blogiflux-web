@@ -1,6 +1,6 @@
 import React from "react";
 
-const Img = ({ url, caption, altText }) => {
+const Img = React.memo(({ url, caption, altText }) => {
   return (
     <div>
       <img src={url} alt={altText || "image-preview"} />
@@ -13,9 +13,9 @@ const Img = ({ url, caption, altText }) => {
       )}
     </div>
   );
-};
+});
 
-const Quote = ({ quote, caption }) => {
+const Quote = React.memo(({ quote, caption }) => {
   return (
     <div className="bg-purple/10 p-3 pl-5 border-l-4 border-purple">
       <p className="text-xl leading-10 md:text-2xl">{quote}</p>
@@ -26,9 +26,9 @@ const Quote = ({ quote, caption }) => {
       )}
     </div>
   );
-};
+});
 
-const List = ({ style, items }) => {
+const List = React.memo(({ style, items }) => {
   return (
     <ol className={`pl-5 ${style == "ordered" ? "list-decimal" : "list-disc"}`}>
       {items.map((item, i) => {
@@ -41,9 +41,9 @@ const List = ({ style, items }) => {
       })}
     </ol>
   );
-};
+});
 
-const BlogContent = ({ block }) => {
+const BlogContent = React.memo(({ block }) => {
   const { type, data } = block;
   if (type == "paragraph") {
     return <p dangerouslySetInnerHTML={{ __html: data.text }}></p>;
@@ -79,6 +79,6 @@ const BlogContent = ({ block }) => {
   if (type == "list") {
     return <List style={data.style} items={data.items}></List>;
   }
-};
+});
 
 export default BlogContent;

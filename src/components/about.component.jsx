@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getFullDay } from "../common/date";
 
-const AboutUser = ({ bio, social_links, joinedAt, className }) => {
+const AboutUser = React.memo(({ bio, social_links, joinedAt, className }) => {
   return (
     <div className={`md:w-[90%] md:mt-7 ${className} `}>
       <p className="text-xl leading-7">{bio || "Nothing to read here"}</p>
@@ -28,6 +28,6 @@ const AboutUser = ({ bio, social_links, joinedAt, className }) => {
       </p>
     </div>
   );
-};
+});
 
 export default AboutUser;

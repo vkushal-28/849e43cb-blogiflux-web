@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getDay } from "../common/date";
 
-const MinimalBlogPostCard = ({ blog, index, isLast }) => {
+const MinimalBlogPostCard = React.memo(({ blog, index, isLast }) => {
   const {
     title,
     blog_id: id,
@@ -36,6 +36,6 @@ const MinimalBlogPostCard = ({ blog, index, isLast }) => {
       </div>
     </Link>
   );
-};
+});
 
 export default MinimalBlogPostCard;
