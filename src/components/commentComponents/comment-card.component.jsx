@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
-import { getDay } from "../common/date";
-import { UserContext } from "../App";
+import { getDay } from "../../common/date";
+import { UserContext } from "../../App";
 import toast from "react-hot-toast";
 import CommentField from "./comment-field.component";
-import { BlogContext } from "../pages/blog.page";
+import { BlogContext } from "../../pages/blog.page";
 import axios from "axios";
-import Button from "../common/button.component";
+import Button from "../../common/button.component";
 
 const CommentCard = React.memo(({ index, leftVal, commentData }) => {
   let {

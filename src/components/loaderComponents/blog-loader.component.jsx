@@ -136,9 +136,9 @@ export const PublishedBlogLoader = ({ draft = false }) => {
       highlightColor={`${theme == "dark" ? "#1b2026" : "#dfe5e8"}`}>
       {Array.apply(null, { length: 5 }).map((e, i) => (
         <div
-          className={`w-full flex gap-10  ${
+          className={`w-full flex gap-10 max-md:gap-0  ${
             width <= 1024 && "gap-0"
-          } border-b mb-6 max-md:px-4 border-grey pb-6 items-center`}
+          } border-b mt-4 max-md:px-0 border-grey pb-5  items-center`}
           key={i}>
           {draft ? (
             <Skeleton
@@ -152,21 +152,19 @@ export const PublishedBlogLoader = ({ draft = false }) => {
               count={1}
               height={100}
               width={100}
-              className={`rounded-lg max-lg:hidden ${
-                width <= 1024 && "hidden"
-              }`}
+              className={`rounded-lg max-md:hidden`}
             />
           )}
-          <div className="flex flex-col justify-between py-2 w-full min-w-[300px] md:min-w-[50px] lg:min-w-[200px] ">
-            <Skeleton count={1} height={22} className="mb-4 lg:w-[100%]" />
+          <div className="flex flex-col py-0 justify-between w-full min-w-[300px] md:min-w-[50px] lg:min-w-[200px] ">
+            <Skeleton count={1} height={20} className="mb-2 lg:w-[90%]" />
             <Skeleton count={1} height={13} className="w-[60%] xl:w-[40%]" />
 
-            <div className="flex gap-6 mt-3">
-              <Skeleton count={1} height={25} width={60} />
-              <Skeleton count={1} height={25} width={60} />
+            <div className="flex gap-6 mt-4">
+              <Skeleton count={1} height={18} width={50} />
+              <Skeleton count={1} height={18} width={50} />
               <Skeleton
                 count={1}
-                height={25}
+                height={18}
                 width={60}
                 className="md:hidden"
               />
@@ -176,15 +174,15 @@ export const PublishedBlogLoader = ({ draft = false }) => {
             <div className="flex gap-2 max-lg:mb-6 border-grey max-lg:border-b">
               {Array.apply(null, { length: 3 }).map((e, i) => (
                 <div
-                  className={`flex flex-col items-center h-full justify-center p-2 px-4  ${
+                  className={`flex flex-col items-center h-full justify-center p-1 px-4  ${
                     i !== 0 && "border-grey border-l "
                   }`}
                   key={i}>
-                  <h1 className="text-xl lg:text-2xl mb-2">
+                  <h1 className="text-xl lg:text-2xl mb-1">
                     <Skeleton count={1} height={25} width={25} />
                   </h1>
                   <p className="max-lg:text-dark-grey capitalize">
-                    <Skeleton count={1} height={13} width={60} />
+                    <Skeleton count={1} height={10} width={60} />
                   </p>
                 </div>
               ))}

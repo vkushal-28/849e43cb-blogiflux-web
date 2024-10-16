@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { UserContext } from "../App";
 import { Navigate, useParams } from "react-router-dom";
-import BlogEditor from "../components/blog-editor.component";
+import BlogEditor from "../components/blogComponents/blog-editor.component";
 import PublishForm from "../components/publish-form.component";
 import Loader from "../components/loader.component";
 import { getBlogDetailsApi } from "../common/api";

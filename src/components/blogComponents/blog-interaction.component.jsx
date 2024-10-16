@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { BlogContext } from "../pages/blog.page";
+import { BlogContext } from "../../pages/blog.page";
 import { Link } from "react-router-dom";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
-import Button from "../common/button.component";
+import Button from "../../common/button.component";
 
 const BlogInteraction = React.memo(() => {
   let {

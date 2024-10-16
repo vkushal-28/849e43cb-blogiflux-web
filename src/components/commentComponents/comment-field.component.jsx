@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { BlogContext } from "../pages/blog.page";
-import Button from "../common/button.component";
+import { BlogContext } from "../../pages/blog.page";
+import Button from "../../common/button.component";
 
 const CommentField = React.memo(
   ({ action, index = undefined, replyingTo = undefined, setIsReplying }) => {

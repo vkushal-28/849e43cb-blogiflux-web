@@ -3,15 +3,16 @@ import { Link, useParams } from "react-router-dom";
 import AnimationWrapper from "../common/page-animation";
 import Loader from "../components/loader.component";
 import { getDay } from "../common/date";
-import BlogInteraction from "../components/blog-interaction.component";
-import BlogPostCard from "../components/blog-post.component";
-import BlogContent from "../components/blog-content.component";
+import BlogInteraction from "../components/blogComponents/blog-interaction.component";
+import BlogPostCard from "../components/blogComponents/blog-post.component";
+import BlogContent from "../components/blogComponents/blog-content.component";
 import CommentsContainer, {
   fetchComments,
-} from "../components/comments.component";
+} from "../components/commentComponents/comments.component";
 import Image from "../components/lazy-image-component";
 import { getBlogDetailsApi, getSearchedBlogsApi } from "../common/api";
 import apiRequest from "../common/api/apiRequest";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const blogStructure = {
   title: "",
@@ -96,6 +97,19 @@ const BlogPage = () => {
 
   return (
     <AnimationWrapper>
+      <HelmetProvider>
+        <Helmet>
+          {/* Open Graph Meta Tags for WhatsApp Sharing */}
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={"This is a site "} />
+          <meta property="og:image" content={banner} />
+          <meta
+            property="og:url"
+            content={`http://localhost:5173/blog/${blog_id}`}
+          />
+          <meta property="og:type" content="article" />
+        </Helmet>
+      </HelmetProvider>
       {loading ? (
         <Loader />
       ) : (

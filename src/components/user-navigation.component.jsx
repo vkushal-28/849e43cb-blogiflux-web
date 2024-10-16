@@ -5,7 +5,7 @@ import { UserContext } from "../App";
 import { removeFromSession } from "../common/session";
 import Button from "../common/button.component";
 
-const UserNavigation = () => {
+const UserNavigation = ({ closeNavPanel }) => {
   const {
     userAuth: { username, isAdmin },
     setUserAuth,
@@ -14,6 +14,7 @@ const UserNavigation = () => {
   const signOutUser = () => {
     removeFromSession("user");
     setUserAuth({ access_token: null });
+    closeNavPanel();
   };
 
   return (
@@ -22,20 +23,33 @@ const UserNavigation = () => {
       transition={{ duration: 0.2 }}>
       <div className="bg-white absolute right-0 border border-grey w-60 mt-8 mr-22 overflow-hidden duration-200">
         {/* {isAdmin && ( */}
-        <Link to="/editor" className="flex gap-2 link md:hidden pl-8 py-4">
+        <Link
+          to="/editor"
+          className="flex gap-2 link md:hidden pl-8 py-4"
+          // onClick={(e) => closeNavPanel()}
+        >
           <i className="fi fi-rr-file-edit"></i>
           <p>write</p>
         </Link>
         {/* )} */}
 
-        <Link to={`/user/${username}`} className="link pl-8 py-4">
+        <Link
+          to={`/user/${username}`}
+          className="link pl-8 py-4"
+          onClick={() => closeNavPanel()}>
           Profile
         </Link>
 
-        <Link to={`/dashboard/blogs`} className="link pl-8 py-4">
+        <Link
+          to={`/dashboard/blogs`}
+          className="link pl-8 py-4"
+          onClick={() => closeNavPanel()}>
           Dashboard
         </Link>
-        <Link to={`/settings/edit-profile`} className="link pl-8 py-4">
+        <Link
+          to={`/settings/edit-profile`}
+          className="link pl-8 py-4"
+          onClick={() => closeNavPanel()}>
           Settings
         </Link>
 

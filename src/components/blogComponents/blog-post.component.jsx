@@ -1,7 +1,8 @@
 import React from "react";
-import { getDay } from "../common/date";
+import { getDay } from "../../common/date";
 import { Link } from "react-router-dom";
-import Image from "./lazy-image-component";
+import Image from "../lazy-image-component";
+import BlogUserDetails from "./blog-user-details.component";
 
 const BlogPostCard = React.memo(({ content, author, isLastIndex }) => {
   const {
@@ -18,19 +19,13 @@ const BlogPostCard = React.memo(({ content, author, isLastIndex }) => {
   return (
     <>
       <div className="w-full">
-        <Link to={`/user/${username}`}>
-          <div className="flex gap-2 items-center mb-3 mt-5 text-dark-grey">
-            <img
-              src={profile_img}
-              className="h-6 w-6 rounded-full "
-              alt="profile-image"
-            />
-            <p className="line-clamp-1">
-              {fullname} @{username}
-            </p>
-            <p className="min-w-fit">{getDay(publishedAt)}</p>
-          </div>
-        </Link>
+        <BlogUserDetails
+          className="mt-5"
+          username={username}
+          fullname={fullname}
+          profileImg={profile_img}
+          publishedDate={publishedAt}
+        />
       </div>
       <div
         className={`flex gap-8 items-start justify-between ${

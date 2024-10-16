@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { getDay } from "../common/date";
-import { UserContext } from "../App";
+import { getDay } from "../../common/date";
+import { UserContext } from "../../App";
 import axios from "axios";
-import Image from "./lazy-image-component";
-import Button from "../common/button.component";
+import Image from "../lazy-image-component";
+import Button from "../../common/button.component";
 
 const BlogStats = React.memo(({ stats }) => {
   return (
@@ -42,11 +42,11 @@ export const ManageBlogCard = React.memo(({ blog }) => {
   return (
     <>
       <div
-        className="flex gap-0 md:gap-10 border-b  md:mb-3  border-grey pb-5 md:pb-4 items-center"
+        className="flex gap-0 md:gap-10 border-b  md:mt-5  border-grey pb-3 md:pb-5 items-start"
         keu={index}>
         <Image
           src={banner}
-          className="max-md:hidden lg:hidden xl:block w-28 h-28 flex-none bg-grey object-cover rounded-md"
+          className="max-md:hidden  xl:block w-28 h-28 flex-none bg-grey object-cover rounded-md"
           type="blog-list"
           alt=""
         />

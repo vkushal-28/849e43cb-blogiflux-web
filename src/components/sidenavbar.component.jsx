@@ -43,14 +43,14 @@ const SideNav = () => {
           <div className="md:hidden bg-white py-1 border-b border-grey flex flex-nowrap overflow-x-auto">
             <button
               ref={sidebarIconTab}
-              className="p-5 capitalize"
+              className="max-md:p-3 p-5 capitalize"
               onClick={(e) => changePageState(e)}>
               <i className="fi fi-rr-bars-staggered pointer-events-none"></i>
             </button>
 
             <button
               ref={pageStateTab}
-              className="p-5 capitalize"
+              className="max-md:p-3 p-5 capitalize"
               onClick={changePageState}>
               {pagename}
             </button>

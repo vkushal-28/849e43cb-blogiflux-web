@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import InPageNavigation from "../components/inpage-navigation.component";
 import Loader from "../components/loader.component";
 import AnimationWrapper from "../common/page-animation";
-import BlogPostCard from "../components/blog-post.component";
+import BlogPostCard from "../components/blogComponents/blog-post.component";
 import NoDataMessage from "../components/nodata.component";
 import LoadMoreData from "../common/load-more.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";

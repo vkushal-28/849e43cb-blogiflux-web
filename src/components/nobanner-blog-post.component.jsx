@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getDay } from "../common/date";
+import BlogUserDetails from "./blogComponents/blog-user-details.component";
 
 const MinimalBlogPostCard = React.memo(({ blog, index, isLast }) => {
   const {
@@ -18,19 +18,12 @@ const MinimalBlogPostCard = React.memo(({ blog, index, isLast }) => {
       </h1>
 
       <div>
-        <Link to={`/user/${username}`}>
-          <div className="flex gap-2 items-center mb-3 text-dark-grey">
-            <img
-              src={profile_img}
-              className="h-6 w-6 rounded-full"
-              alt="profile-image"
-            />
-            <p className="line-clamp-1">
-              {fullname} @{username}
-            </p>
-            <p className="min-w-fit">{getDay(publishedAt)}</p>
-          </div>
-        </Link>
+        <BlogUserDetails
+          username={username}
+          fullname={fullname}
+          profileImg={profile_img}
+          publishedDate={publishedAt}
+        />
         <h1 className="blog-title mb-5">{title}</h1>
         {!isLast && <hr className="border-grey " />}
       </div>

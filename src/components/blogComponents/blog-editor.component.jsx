@@ -1,18 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import logoLight from "../imgs/logo-light.png";
-import logoDark from "../imgs/logo-dark.png";
-import AnimationWrapper from "../common/page-animation";
-import { uploadImage } from "../common/aws";
+import logoLight from "../../imgs/logo-light.png";
+import logoDark from "../../imgs/logo-dark.png";
+import AnimationWrapper from "../../common/page-animation";
+import { uploadImage } from "../../common/aws";
 import { Toaster, toast } from "react-hot-toast";
-import { EditorContext } from "../pages/editor.pages";
-import lightBanner from "../imgs/blog banner light.png";
-import darkBanner from "../imgs/blog banner dark.png";
+import { EditorContext } from "../../pages/editor.pages";
+import lightBanner from "../../imgs/blog banner light.png";
+import darkBanner from "../../imgs/blog banner dark.png";
 import EditorJS from "@editorjs/editorjs";
-import { tools } from "./tools.component";
+import { tools } from "../tools.component";
 import axios from "axios";
-import { ThemeContext, UserContext } from "../App";
-import Button from "../common/button.component";
+import { ThemeContext, UserContext } from "../../App";
+import Button from "../../common/button.component";
 
 const BlogEditor = React.memo(() => {
   const navigate = useNavigate();

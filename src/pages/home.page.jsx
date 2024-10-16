@@ -4,7 +4,7 @@ import InPageNavigation, {
   activeTabRef,
 } from "../components/inpage-navigation.component";
 import axios from "axios";
-import BlogPostCard from "../components/blog-post.component";
+import BlogPostCard from "../components/blogComponents/blog-post.component";
 import MinimalBlogPostCard from "../components/nobanner-blog-post.component";
 import NoDataMessage from "../components/nodata.component";
 import { filterPaginationdata } from "../common/filter-pagination-data";

@@ -6,7 +6,7 @@ import AnimationWrapper from "../common/page-animation";
 import {
   ManageBlogCard,
   ManageDraftCard,
-} from "../components/manage-blogcard.component";
+} from "../components/blogComponents/manage-blogcard.component";
 import NoDataMessage from "../components/nodata.component";
 import LoadMoreData from "../common/load-more.component";
 import { useSearchParams } from "react-router-dom";
@@ -111,6 +111,7 @@ const ManageBlogs = () => {
             {blogs.result.map((blog, i) => {
               return (
                 <AnimationWrapper key={i} transition={{ delay: i * 0.04 }}>
+                  {/* <PublishedBlogLoader /> */}
                   <ManageBlogCard
                     blog={{ ...blog, index: i, setStateFunc: setBlogs }}
                   />
@@ -130,6 +131,7 @@ const ManageBlogs = () => {
         ) : (
           <NoDataMessage message="No published blogs" />
         )}
+
         {drafts === null ? (
           <PublishedBlogLoader draft={true} />
         ) : drafts.result.length ? (
